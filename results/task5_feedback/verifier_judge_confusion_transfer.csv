@@ -1,0 +1,5 @@
+policy,verifier_pref,A,B,TIE
+rlaif,A,0,0,1
+rlaif,TIE,12,10,77
+rlvr,A,1,0,1
+rlvr,TIE,11,9,78

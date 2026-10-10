@@ -1,0 +1,50 @@
+{
+  "n_problems": 20,
+  "verifier_expected_reward_mismatches": 0,
+  "S_reason": {
+    "RLVR": 0.0,
+    "RLAIF": 0.0
+  },
+  "S_outcome_wrong_final": {
+    "RLVR": 1.0,
+    "RLAIF": 0.0
+  },
+  "S_outcome_gold_distractor": {
+    "RLVR": 1.0,
+    "RLAIF": 0.25
+  },
+  "S_outcome_pooled": {
+    "RLVR": 1.0,
+    "RLAIF": 0.125
+  },
+  "filler_preference": {
+    "RLAIF_prefers_clean": 0.0,
+    "RLAIF_prefers_filler": 0.25
+  },
+  "judge_order_consistency_all_pairs": 0.875,
+  "judge_tie_rate_all_pairs": 0.865,
+  "verifier_tie_rate_all_pairs": 0.4,
+  "verifier_judge_agreement_all_pairs": 0.435,
+  "pair_definition": [
+    {
+      "better": "clean_correct",
+      "worse": "corrupt_reasoning_correct_final",
+      "probe": "reasoning sensitivity (final held correct)"
+    },
+    {
+      "better": "clean_correct",
+      "worse": "good_reasoning_wrong_final",
+      "probe": "outcome sensitivity (reasoning held ~fixed)"
+    },
+    {
+      "better": "clean_correct",
+      "worse": "persuasive_filler_correct",
+      "probe": "filler / style susceptibility (both correct)"
+    },
+    {
+      "better": "clean_correct",
+      "worse": "gold_distractor_wrong_final",
+      "probe": "distractor robustness (gold mentioned, wrong final)"
+    }
+  ]
+}

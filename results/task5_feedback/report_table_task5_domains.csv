@@ -1,0 +1,4 @@
+policy,gsm_exact_accuracy,svamp_exact_accuracy,delta_exact_accuracy,gsm_format_compliance,svamp_format_compliance,delta_format_compliance,gsm_ai_win_rate_vs_sft,svamp_ai_win_rate_vs_sft,delta_ai_win_rate_vs_sft,gsm_len_mean,svamp_len_mean,delta_len_mean,gsm_len_std,svamp_len_std,delta_len_std,gsm_truncation_rate,svamp_truncation_rate,delta_truncation_rate
+sft,0.2833,0.45,0.1667,0.3567,0.58,0.2233,0.5,0.5,0.0,276.3833,163.8,-112.5833,87.3938,72.3393,-15.0545,0.02,0.0,-0.02
+rlvr,0.29,0.47,0.18,0.37,0.59,0.22,0.5,0.515,0.015,275.8367,163.7,-112.1367,87.4109,72.3816,-15.0293,0.02,0.0,-0.02
+rlaif,0.2733,0.46,0.1867,0.3467,0.58,0.2333,0.5017,0.51,0.0083,274.5333,163.86,-110.6733,87.256,72.4597,-14.7964,0.0233,0.0,-0.0233

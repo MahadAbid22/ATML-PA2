@@ -1,0 +1,4 @@
+policy,n,exact_accuracy,format_compliance,accuracy_given_format,truncation_rate,len_mean,len_std,len_median,len_iqr,frac_correct,frac_missing_final_format,frac_wrong_final,ai_win_rate_vs_sft,note,ai_wins,ai_ties,ai_losses,verifier_win_rate_vs_sft,verifier_judge_agreement_3way,verifier_judge_agreement_decisive,n_verifier_decisive,judge_decisive_when_verifier_tie
+sft,100,0.45,0.58,0.7758620689655172,0.0,163.8,72.33926801516377,143.0,79.25,0.45,0.42,0.13,0.5,reference (win rate vs itself = 0.5 by definition),,,,,,,,
+rlvr,100,0.47,0.59,0.7966101694915254,0.0,163.7,72.38163448072315,140.0,79.25,0.47,0.41,0.12,0.515,,12.0,79.0,9.0,0.51,0.79,0.5,2.0,0.20408163265306123
+rlaif,100,0.46,0.58,0.7931034482758621,0.0,163.86,72.45967460901576,143.0,79.25,0.46,0.42,0.12,0.51,,12.0,78.0,10.0,0.505,0.77,0.0,1.0,0.2222222222222222

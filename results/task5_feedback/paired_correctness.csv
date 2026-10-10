@@ -1,0 +1,7 @@
+dataset,a,b,a_right_b_wrong,a_wrong_b_right,both_right,both_wrong
+gsm,rlvr,sft,8,6,79,207
+gsm,rlaif,sft,5,8,77,210
+gsm,rlvr,rlaif,7,2,80,211
+transfer,rlvr,sft,2,0,45,53
+transfer,rlaif,sft,1,0,45,54
+transfer,rlvr,rlaif,1,0,46,53

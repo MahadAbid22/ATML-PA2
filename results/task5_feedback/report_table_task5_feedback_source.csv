@@ -1,0 +1,7 @@
+,RLVR,RLAIF
+coverage: fraction of controlled pairs decided (not tie),0.5,0.125
+noise: wrong-preference rate on controlled pairs,0.0,0.0625
+S_reason,0.0,0.0
+S_outcome (pooled),1.0,0.125
+exploitability: prefers persuasive filler over clean,0.0,0.25
+seconds per prompt group (K=4),0.0,1.1998

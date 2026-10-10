@@ -1,0 +1,13 @@
+policy,svamp_type,n,exact_accuracy
+sft,Addition,20,0.25
+sft,Common-Division,14,0.5
+sft,Multiplication,9,0.1111111111111111
+sft,Subtraction,57,0.5614035087719298
+rlvr,Addition,20,0.25
+rlvr,Common-Division,14,0.5
+rlvr,Multiplication,9,0.2222222222222222
+rlvr,Subtraction,57,0.5789473684210527
+rlaif,Addition,20,0.25
+rlaif,Common-Division,14,0.5
+rlaif,Multiplication,9,0.1111111111111111
+rlaif,Subtraction,57,0.5789473684210527

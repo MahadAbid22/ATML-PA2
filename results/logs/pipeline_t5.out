@@ -1,0 +1,269 @@
+[run] python -m task5_feedback.evaluate_math --config configs/feedback.yaml --dataset gsm
+Rows: 300
+Policies: ['sft', 'rlvr', 'rlaif']
+Exact verifier available as task5_feedback.rlvr.exact_reward
+Pairwise judge available as task5_feedback.rlaif.PairwiseAIJudge
+[run] python -m task5_feedback.evaluate_math --config configs/feedback.yaml --dataset gsm --policy sft
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+[gsm/sft] 16/300 (19s)
+[gsm/sft] 32/300 (35s)
+[gsm/sft] 48/300 (49s)
+[gsm/sft] 64/300 (67s)
+[gsm/sft] 80/300 (85s)
+[gsm/sft] 96/300 (98s)
+[gsm/sft] 112/300 (112s)
+[gsm/sft] 128/300 (130s)
+[gsm/sft] 144/300 (144s)
+[gsm/sft] 160/300 (164s)
+[gsm/sft] 176/300 (183s)
+[gsm/sft] 192/300 (198s)
+[gsm/sft] 208/300 (214s)
+[gsm/sft] 224/300 (234s)
+[gsm/sft] 240/300 (254s)
+[gsm/sft] 256/300 (273s)
+[gsm/sft] 272/300 (289s)
+[gsm/sft] 288/300 (306s)
+[gsm/sft] 300/300 (325s)
+[run] python -m task5_feedback.evaluate_math --config configs/feedback.yaml --dataset gsm --policy rlvr
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+[gsm/rlvr] 16/300 (24s)
+[gsm/rlvr] 32/300 (41s)
+[gsm/rlvr] 48/300 (57s)
+[gsm/rlvr] 64/300 (71s)
+[gsm/rlvr] 80/300 (88s)
+[gsm/rlvr] 96/300 (102s)
+[gsm/rlvr] 112/300 (116s)
+[gsm/rlvr] 128/300 (133s)
+[gsm/rlvr] 144/300 (146s)
+[gsm/rlvr] 160/300 (164s)
+[gsm/rlvr] 176/300 (182s)
+[gsm/rlvr] 192/300 (196s)
+[gsm/rlvr] 208/300 (209s)
+[gsm/rlvr] 224/300 (225s)
+[gsm/rlvr] 240/300 (244s)
+[gsm/rlvr] 256/300 (262s)
+[gsm/rlvr] 272/300 (276s)
+[gsm/rlvr] 288/300 (292s)
+[gsm/rlvr] 300/300 (316s)
+[run] python -m task5_feedback.evaluate_math --config configs/feedback.yaml --dataset gsm --policy rlaif
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+[gsm/rlaif] 16/300 (24s)
+[gsm/rlaif] 32/300 (42s)
+[gsm/rlaif] 48/300 (58s)
+[gsm/rlaif] 64/300 (74s)
+[gsm/rlaif] 80/300 (94s)
+[gsm/rlaif] 96/300 (109s)
+[gsm/rlaif] 112/300 (123s)
+[gsm/rlaif] 128/300 (142s)
+[gsm/rlaif] 144/300 (159s)
+[gsm/rlaif] 160/300 (183s)
+[gsm/rlaif] 176/300 (208s)
+[gsm/rlaif] 192/300 (224s)
+[gsm/rlaif] 208/300 (241s)
+[gsm/rlaif] 224/300 (266s)
+[gsm/rlaif] 240/300 (295s)
+[gsm/rlaif] 256/300 (316s)
+[gsm/rlaif] 272/300 (337s)
+[gsm/rlaif] 288/300 (359s)
+[gsm/rlaif] 300/300 (383s)
+
+
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[judge gsm/rlvr] 50/300 (11s)
+[judge gsm/rlvr] 100/300 (22s)
+[judge gsm/rlvr] 150/300 (31s)
+[judge gsm/rlvr] 200/300 (40s)
+[judge gsm/rlvr] 250/300 (50s)
+[judge gsm/rlvr] 300/300 (60s)
+[judge gsm/rlaif] 50/300 (61s)
+[judge gsm/rlaif] 100/300 (63s)
+[judge gsm/rlaif] 150/300 (64s)
+[judge gsm/rlaif] 200/300 (65s)
+[judge gsm/rlaif] 250/300 (68s)
+[judge gsm/rlaif] 300/300 (70s)
+                                                                                    0           1           2
+policy                                                                            sft        rlvr       rlaif
+n                                                                                 300         300         300
+exact_accuracy                                                               0.283333        0.29    0.273333
+format_compliance                                                            0.356667        0.37    0.346667
+accuracy_given_format                                                        0.794393    0.783784    0.788462
+truncation_rate                                                                  0.02        0.02    0.023333
+len_mean                                                                   276.383333  275.836667  274.533333
+len_std                                                                     87.393794   87.410901   87.256027
+len_median                                                                      262.0       261.0       261.0
+len_iqr                                                                         113.5      120.25      115.75
+frac_missing_final_format                                                    0.623333        0.61        0.63
+frac_correct                                                                 0.283333        0.29    0.273333
+frac_wrong_final                                                             0.073333        0.08    0.073333
+frac_truncated_no_final                                                          0.02        0.02    0.023333
+ai_win_rate_vs_sft                                                                0.5         0.5    0.501667
+note                               reference (win rate vs itself = 0.5 by definition)         NaN         NaN
+ai_wins                                                                           NaN         7.0         8.0
+ai_ties                                                                           NaN       286.0       285.0
+ai_losses                                                                         NaN         7.0         7.0
+verifier_win_rate_vs_sft                                                          NaN    0.503333       0.495
+verifier_judge_agreement_3way                                                     NaN    0.916667    0.923333
+verifier_judge_agreement_decisive                                                 NaN    0.071429    0.153846
+n_verifier_decisive                                                               NaN        14.0        13.0
+judge_decisive_when_verifier_tie                                                  NaN    0.041958    0.041812
+judge_pref            A  B  TIE
+policy verifier_pref           
+rlaif  A              1  1    3
+       B              0  1    7
+       TIE            7  5  275
+rlvr   A              1  1    6
+       B              0  0    6
+       TIE            6  6  274
+[run] python -m task5_feedback.score_perturbations --config configs/feedback.yaml
+Diagnostic problems: 20
+Variants/problem: ['clean_correct', 'corrupt_reasoning_correct_final', 'gold_distractor_wrong_final', 'good_reasoning_wrong_final', 'persuasive_filler_correct']
+Use exact_reward(...) for RLVR and PairwiseAIJudge(...) for RLAIF.
+
+Verifier vs release expected_exact_reward mismatches: 0
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+judged problem 803
+judged problem 750
+judged problem 867
+judged problem 506
+judged problem 505
+judged problem 289
+judged problem 736
+judged problem 558
+judged problem 677
+judged problem 23
+judged problem 1122
+judged problem 569
+judged problem 620
+judged problem 299
+judged problem 1200
+judged problem 1245
+judged problem 103
+judged problem 459
+judged problem 113
+judged problem 681
+                   perturbation                                               probe                   mechanism  n_pairs  better_rate  tie_rate  wrong_rate  order_consistency
+corrupt_reasoning_correct_final          reasoning sensitivity (final held correct)         RLVR exact verifier       20         0.00      1.00        0.00                NaN
+corrupt_reasoning_correct_final          reasoning sensitivity (final held correct)        RLAIF pairwise judge       20         0.00      1.00        0.00                1.0
+corrupt_reasoning_correct_final          reasoning sensitivity (final held correct) RLAIF judge (reversed call)       20         0.00      1.00        0.00                1.0
+     good_reasoning_wrong_final         outcome sensitivity (reasoning held ~fixed)         RLVR exact verifier       20         1.00      0.00        0.00                NaN
+     good_reasoning_wrong_final         outcome sensitivity (reasoning held ~fixed)        RLAIF pairwise judge       20         0.00      1.00        0.00                0.9
+     good_reasoning_wrong_final         outcome sensitivity (reasoning held ~fixed) RLAIF judge (reversed call)       20         0.10      0.90        0.00                0.9
+      persuasive_filler_correct        filler / style susceptibility (both correct)         RLVR exact verifier       20         0.00      1.00        0.00                NaN
+      persuasive_filler_correct        filler / style susceptibility (both correct)        RLAIF pairwise judge       20         0.00      0.75        0.25                1.0
+      persuasive_filler_correct        filler / style susceptibility (both correct) RLAIF judge (reversed call)       20         0.00      0.75        0.25                1.0
+    gold_distractor_wrong_final distractor robustness (gold mentioned, wrong final)         RLVR exact verifier       20         1.00      0.00        0.00                NaN
+    gold_distractor_wrong_final distractor robustness (gold mentioned, wrong final)        RLAIF pairwise judge       20         0.25      0.75        0.00                0.7
+    gold_distractor_wrong_final distractor robustness (gold mentioned, wrong final) RLAIF judge (reversed call)       20         0.15      0.85        0.00                0.7
+                                 rlvr_reward_mean  rlaif_group_reward_mean  rlaif_group_reward_std  response_words_mean
+variant_type                                                                                                           
+clean_correct                                 1.0                    0.500                   0.070                 49.7
+corrupt_reasoning_correct_final               1.0                    0.500                   0.081                 49.7
+good_reasoning_wrong_final                    0.0                    0.475                   0.051                 49.7
+persuasive_filler_correct                     1.0                    0.588                   0.135                 59.7
+gold_distractor_wrong_final                   0.0                    0.438                   0.125                 17.0
+{'n_problems': 20, 'verifier_expected_reward_mismatches': 0, 'S_reason': {'RLVR': 0.0, 'RLAIF': 0.0}, 'S_outcome_wrong_final': {'RLVR': 1.0, 'RLAIF': 0.0}, 'S_outcome_gold_distractor': {'RLVR': 1.0, 'RLAIF': 0.25}, 'S_outcome_pooled': {'RLVR': 1.0, 'RLAIF': 0.125}, 'filler_preference': {'RLAIF_prefers_clean': 0.0, 'RLAIF_prefers_filler': 0.25}, 'judge_order_consistency_all_pairs': 0.875, 'judge_tie_rate_all_pairs': 0.865, 'verifier_tie_rate_all_pairs': 0.4, 'verifier_judge_agreement_all_pairs': 0.435, 'pair_definition': [{'better': 'clean_correct', 'worse': 'corrupt_reasoning_correct_final', 'probe': 'reasoning sensitivity (final held correct)'}, {'better': 'clean_correct', 'worse': 'good_reasoning_wrong_final', 'probe': 'outcome sensitivity (reasoning held ~fixed)'}, {'better': 'clean_correct', 'worse': 'persuasive_filler_correct', 'probe': 'filler / style susceptibility (both correct)'}, {'better': 'clean_correct', 'worse': 'gold_distractor_wrong_final', 'probe': 'distractor robustness (gold mentioned, wrong final)'}]}
+[run] python -m task5_feedback.evaluate_math --config configs/feedback.yaml --dataset transfer
+Rows: 100
+Policies: ['sft', 'rlvr', 'rlaif']
+Exact verifier available as task5_feedback.rlvr.exact_reward
+Pairwise judge available as task5_feedback.rlaif.PairwiseAIJudge
+[run] python -m task5_feedback.evaluate_math --config configs/feedback.yaml --dataset transfer --policy sft
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+[transfer/sft] 16/100 (14s)
+[transfer/sft] 32/100 (30s)
+[transfer/sft] 48/100 (46s)
+[transfer/sft] 64/100 (57s)
+[transfer/sft] 80/100 (69s)
+[transfer/sft] 96/100 (81s)
+[transfer/sft] 100/100 (92s)
+[run] python -m task5_feedback.evaluate_math --config configs/feedback.yaml --dataset transfer --policy rlvr
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+[transfer/rlvr] 16/100 (16s)
+[transfer/rlvr] 32/100 (30s)
+[transfer/rlvr] 48/100 (48s)
+[transfer/rlvr] 64/100 (63s)
+[transfer/rlvr] 80/100 (77s)
+[transfer/rlvr] 96/100 (89s)
+[transfer/rlvr] 100/100 (101s)
+[run] python -m task5_feedback.evaluate_math --config configs/feedback.yaml --dataset transfer --policy rlaif
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+[transfer/rlaif] 16/100 (16s)
+[transfer/rlaif] 32/100 (32s)
+[transfer/rlaif] 48/100 (49s)
+[transfer/rlaif] 64/100 (63s)
+[transfer/rlaif] 80/100 (75s)
+[transfer/rlaif] 96/100 (87s)
+[transfer/rlaif] 100/100 (99s)
+
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[judge transfer/rlvr] 50/100 (11s)
+[judge transfer/rlvr] 100/100 (21s)
+[judge transfer/rlaif] 50/100 (22s)
+[judge transfer/rlaif] 100/100 (22s)
+                                                                                    0          1          2
+policy                                                                            sft       rlvr      rlaif
+n                                                                                 100        100        100
+exact_accuracy                                                                   0.45       0.47       0.46
+format_compliance                                                                0.58       0.59       0.58
+accuracy_given_format                                                        0.775862    0.79661   0.793103
+truncation_rate                                                                   0.0        0.0        0.0
+len_mean                                                                        163.8      163.7     163.86
+len_std                                                                     72.339268  72.381634  72.459675
+len_median                                                                      143.0      140.0      143.0
+len_iqr                                                                         79.25      79.25      79.25
+frac_correct                                                                     0.45       0.47       0.46
+frac_missing_final_format                                                        0.42       0.41       0.42
+frac_wrong_final                                                                 0.13       0.12       0.12
+ai_win_rate_vs_sft                                                                0.5      0.515       0.51
+note                               reference (win rate vs itself = 0.5 by definition)        NaN        NaN
+ai_wins                                                                           NaN       12.0       12.0
+ai_ties                                                                           NaN       79.0       78.0
+ai_losses                                                                         NaN        9.0       10.0
+verifier_win_rate_vs_sft                                                          NaN       0.51      0.505
+verifier_judge_agreement_3way                                                     NaN       0.79       0.77
+verifier_judge_agreement_decisive                                                 NaN        0.5        0.0
+n_verifier_decisive                                                               NaN        2.0        1.0
+judge_decisive_when_verifier_tie                                                  NaN   0.204082   0.222222
+judge_pref             A   B  TIE
+policy verifier_pref             
+rlaif  A               0   0    1
+       TIE            12  10   77
+rlvr   A               1   0    1
+       TIE            11   9   78
+[run] python -m task5_feedback.compare_feedback --config configs/feedback.yaml
+                                   0           1           2
+policy                           sft        rlvr       rlaif
+gsm_exact_accuracy          0.283333        0.29    0.273333
+svamp_exact_accuracy            0.45        0.47        0.46
+delta_exact_accuracy        0.166667        0.18    0.186667
+gsm_format_compliance       0.356667        0.37    0.346667
+svamp_format_compliance         0.58        0.59        0.58
+delta_format_compliance     0.223333        0.22    0.233333
+gsm_ai_win_rate_vs_sft           0.5         0.5    0.501667
+svamp_ai_win_rate_vs_sft         0.5       0.515        0.51
+delta_ai_win_rate_vs_sft         0.0       0.015    0.008333
+gsm_len_mean              276.383333  275.836667  274.533333
+svamp_len_mean                 163.8       163.7      163.86
+delta_len_mean           -112.583333 -112.136667 -110.673333
+gsm_len_std                87.393794   87.410901   87.256027
+svamp_len_std              72.339268   72.381634   72.459675
+delta_len_std             -15.054526  -15.029266  -14.796353
+gsm_truncation_rate             0.02        0.02    0.023333
+svamp_truncation_rate            0.0         0.0         0.0
+delta_truncation_rate          -0.02       -0.02   -0.023333
+policy  gsm_acc_gain_vs_sft  svamp_acc_gain_vs_sft
+   sft             0.000000                   0.00
+  rlvr             0.006667                   0.02
+ rlaif            -0.010000                   0.01
+ dataset policy  missing_final_format  correct  wrong_final  truncated_no_final
+     gsm    sft              0.623333 0.283333     0.073333            0.020000
+     gsm   rlvr              0.610000 0.290000     0.080000            0.020000
+     gsm  rlaif              0.630000 0.273333     0.073333            0.023333
+transfer    sft              0.420000 0.450000     0.130000            0.000000
+transfer   rlvr              0.410000 0.470000     0.120000            0.000000
+transfer  rlaif              0.420000 0.460000     0.120000            0.000000
+{'verifier_seconds_per_response': 7.910939554373424e-06, 'judge_seconds_per_pairwise_call': 0.1999673238056906, 'judge_calls_per_prompt_group_K4': 6, 'judge_seconds_per_prompt_group_K4': 1.1998039428341436, 'verifier_seconds_per_prompt_group_K4': 3.1643758217493695e-05, 'judge_model': 'Qwen/Qwen2.5-3B-Instruct', 'judge_detail': {'gsm': {'new_judge_calls': 361, 'total_seconds': 69.33115916326642, 'seconds_per_call': 0.19205307247442222}, 'transfer': {'new_judge_calls': 107, 'total_seconds': 22.243328539654613, 'seconds_per_call': 0.20788157513695898}}}
+== stage t5 finished in 28.2 min
