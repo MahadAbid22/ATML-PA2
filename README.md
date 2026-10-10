@@ -20,10 +20,16 @@ python -m scripts.check_environment
 python -m scripts.smoke_tests --gpu            # objective unit tests + log-prob/gradient equality checks
 ```
 
-Reference environment used for the reported results: Windows 11, Python 3.12.10, PyTorch 2.5.1+cu121,
-Transformers 4.57.1, TRL 0.27.2, PEFT 0.17.1, Tokenizers 0.22.1, bitsandbytes 0.50.2, single
-RTX 4070 Laptop GPU (8 GB, 55 W) with 16 GB RAM. If a stale Hugging Face token is cached, set
+Reference environment used for the reported results: rented Vast.ai instance, Ubuntu container,
+Python 3.12.14, PyTorch 2.14.0+cu132, Transformers 4.57.1, TRL 0.27.2, PEFT 0.17.1, Tokenizers 0.22.1,
+bitsandbytes 0.50.2, single NVIDIA RTX 4090 (24 GB). The code was developed and smoke-tested on an
+RTX 4070 Laptop GPU (8 GB), which is why it is memory-frugal. If a stale Hugging Face token is cached, set
 `HF_HUB_DISABLE_IMPLICIT_TOKEN=1` (all public models are downloaded anonymously).
+
+Scheduling used for the reported run (`driver.sh` logic): the standard PPO and standard GRPO continuations
+were run **alone** on the GPU (so their reported wall-clock time / peak VRAM are not distorted), after which
+the remaining stages of Tasks 1, 2, 3 and 5 ran as concurrent processes on the same GPU, followed by
+Task 4 generation. Concurrency changes only wall-clock time, never data, seeds or decoding.
 
 ## 2. Reproduce everything
 
@@ -70,6 +76,7 @@ python -m task3_grpo.compare_normalization --config configs/grpo.yaml   # canoni
 ```bash
 python -m task4_safety.generate_responses --config configs/feedback.yaml
 python -m task4_safety.make_audit_sheet   --config configs/feedback.yaml   # blind 60 x 4 audit sheet
+python -m task4_safety.make_label_tool    --config configs/feedback.yaml   # optional HTML page for manual labelling
 python -m task4_safety.judge_responses    --config configs/feedback.yaml
 python -m task4_safety.evaluate_safety    --config configs/feedback.yaml
 ```
@@ -102,9 +109,17 @@ implementations (GAE, KL shaping, per-sequence GRPO loss decomposition).
   adapter disabled; LM-head log-probs computed in 128-token chunks under activation checkpointing
   (`common/rl_utils.py`, numerically checked against the starter helper); GRPO back-propagates one
   completion at a time using an exact decomposition of the batch loss; 8-bit RM, 4-bit judge.
-* **DPO**: pairs whose prompt alone does not fit `max_sequence_length = 768` are excluded (the supplied
-  encoder raises on them); excluded keys are saved in `results/task1_dpo/train_ids_*.json`. β forks use
-  the first 600 fitting pairs. Constant learning rate (no schedule in the config).
+* **DPO overlength filter** (one of the three options approved by the course staff): a preference pair is
+  kept only if *both* prompt + chosen and prompt + rejected (chat template + EOS) fit in
+  `max_sequence_length = 768` tokens, so no prompt or response token is ever truncated. The same rule is
+  applied to every DPO training file (standard, β forks, length-balanced) and every DPO evaluation file
+  (standard held-out, length-stratified). Kept/dropped counts: standard train 1214/1500 (286 dropped),
+  standard held-out 240/300, length-balanced train 1400/1500 (38 preferred-longer, 28 matched, 34
+  rejected-longer dropped), length-stratified eval 230/246 (8/2/6 dropped). Dropped keys are saved in
+  `results/task1_dpo/train_ids_*.json`; before/after-filter length statistics are in
+  `results/task1_dpo/length_dataset_stats.json`. Implication: the filter removes the longest responses,
+  so the retained data has a slightly weaker long-response tail than the released files. β forks use the
+  first 600 retained pairs. Constant learning rate (no schedule in the config).
 * **RL prompts**: prompts longer than `max_prompt_length = 256` are excluded from training and held-out
   sets, because the supplied `batch_generate` right-truncates and would delete the assistant header. The
   cached-rollout study reproduces the release tokenisation exactly (including that truncation) to match
@@ -116,7 +131,8 @@ implementations (GAE, KL shaping, per-sequence GRPO loss decomposition).
 * **Held-out protocol (Tasks 2/3/6)**: eval-pool prompts ≤ 256 tokens, one sample per prompt, T = 0.7,
   top-p 0.9, ≤ 768 new tokens, seed 6304. KL uses the course `sampled_kl` convention (token-pooled);
   per-sequence sums are reported too.
-* **Thermal guard**: training/generation loops pause if the GPU reaches 84 °C.
+* **Thermal guard**: training/generation loops pause if the GPU reaches 84 °C (`PA2_THERMAL_MAX`, set to
+  88 °C on the RTX 4090).
 
 ## 5. Attribution
 

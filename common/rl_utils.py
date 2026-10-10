@@ -70,6 +70,17 @@ def _chunk_entropy(hidden, weight, temperature: float):
     return -(logp.exp() * logp).sum(-1)
 
 
+NOGRAD_TOKENS_PER_PIECE = 512  # no-grad path: cap rows x chunk tokens per LM-head call (~0.3 GB fp32 logits)
+
+
+def _by_rows(fn, hc, *args, rows: int):
+    """Apply a per-token function to row slices of a chunk (identical values, lower peak memory)."""
+    if rows >= hc.shape[0]:
+        return fn(hc, *args)
+    return torch.cat([fn(hc[r : r + rows], *[a[r : r + rows] if torch.is_tensor(a) and a.dim() > 1 else a for a in args])
+                      for r in range(0, hc.shape[0], rows)], dim=0)
+
+
 def tail_token_logprobs(
     model,
     input_ids: torch.Tensor,
@@ -108,13 +119,14 @@ def tail_token_logprobs(
         logps, ents = [], []
         for s in range(0, n_tail, chunk_size):
             hc, lc = h[:, s : s + chunk_size], labels[:, s : s + chunk_size]
+            rows = max(1, NOGRAD_TOKENS_PER_PIECE // max(1, hc.shape[1]))
             if grad:
                 lp = checkpoint(_chunk_logp, hc, head.weight, lc, temperature, use_reentrant=False)
             else:
-                lp = _chunk_logp(hc, head.weight, lc, temperature)
+                lp = _by_rows(lambda x, y: _chunk_logp(x, head.weight, y, temperature), hc, lc, rows=rows)
             logps.append(lp)
             if entropy:
-                ents.append(_chunk_entropy(hc.detach(), head.weight, temperature))
+                ents.append(_by_rows(lambda x: _chunk_entropy(x, head.weight, temperature), hc.detach(), rows=rows))
     logp = torch.cat(logps, dim=1)
     ent = torch.cat(ents, dim=1) if entropy else None
     return logp, ent
