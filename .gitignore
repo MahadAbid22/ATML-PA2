@@ -19,7 +19,10 @@ cached/
 checkpoints/
 manifests/
 manual/
-data/
+# data/: everything comes from download_assets except the word-limit prompts, which the
+# manual says are tracked directly in the repository.
+data/*
+!data/word_limit_prompts.jsonl
 
 # Misc
 *.zip
