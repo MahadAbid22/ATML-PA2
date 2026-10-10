@@ -1,0 +1,35 @@
+{
+  "run": "fork_grpo",
+  "config": {
+    "updates": 8,
+    "prompts_per_update": 1,
+    "policy_epochs": 1,
+    "learning_rate": 5e-06,
+    "clip_epsilon": 0.2,
+    "kl_beta": 0.1,
+    "num_generations": 4,
+    "max_prompt_length": 256,
+    "max_completion_length": 512,
+    "mask_truncated_completions": true,
+    "max_grad_norm": 1.0,
+    "seed": 6304,
+    "loss_type": "grpo",
+    "generation": {
+      "temperature": 0.7,
+      "top_p": 0.9,
+      "do_sample": true
+    }
+  },
+  "updates": 8,
+  "generated_tokens_total": 7698,
+  "uninformative_group_fraction": 0.125,
+  "wall_clock_s": 67.34141254425049,
+  "thermal_pause_s": 0.0,
+  "wall_clock_excluding_thermal_pauses_s": 67.34141254425049,
+  "peak_vram": {
+    "allocated_gib": 5.205069065093994,
+    "reserved_gib": 5.52734375
+  },
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "output": "/workspace/pa2/outputs/task3_grpo/fork_grpo"
+}

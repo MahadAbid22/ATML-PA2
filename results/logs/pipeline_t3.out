@@ -1,0 +1,345 @@
+[skip] task3_grpo.continue_train --config configs/grpo.yaml --run-name standard  (found outputs/task3_grpo/standard/adapter_model.safetensors)
+[run] python -m task3_grpo.evaluate --config configs/grpo.yaml --adapter outputs/task3_grpo/standard --name standard
+[eval standard] generated 16/165 (21s)
+[eval standard] generated 32/165 (54s)
+[W1010 03:02:07.334486085 CUDACachingAllocator.cpp:528] expandable_segments: memory mapping failed with OOM on device 0 while trying to map 20971520 bytes (free: 10944512, total: 25252724736).
+[eval standard] generated 48/165 (81s)
+[eval standard] generated 64/165 (116s)
+[eval standard] generated 80/165 (158s)
+[eval standard] generated 96/165 (199s)
+[eval standard] generated 112/165 (239s)
+[eval standard] generated 128/165 (284s)
+[eval standard] generated 144/165 (330s)
+[eval standard] generated 160/165 (378s)
+[eval standard] generated 165/165 (404s)
+{
+  "n_prompts": 165,
+  "reward_mean": 1.8807706890684186,
+  "reward_std": 1.2708862143820503,
+  "effective_reward_mean": 1.8807706890684186,
+  "kl_token_mean": 0.0001137213387113681,
+  "kl_seq_mean": 0.035232249173251066,
+  "entropy_token_mean": 0.9892300373106632,
+  "sample_entropy_token_mean": 0.7883590675556533,
+  "length": {
+    "n": 165,
+    "mean": 309.8121212121212,
+    "std": 263.7759486224863,
+    "median": 239.0,
+    "q1": 56.0,
+    "q3": 528.0,
+    "iqr": 472.0,
+    "min": 2.0,
+    "max": 768.0
+  },
+  "eos_rate": 0.896969696969697,
+  "truncation_rate": 0.10303030303030303,
+  "name": "standard",
+  "adapter": "outputs/task3_grpo/standard",
+  "max_new_tokens": 768,
+  "missing_eos_penalty": null,
+  "n_dropped_prompt_too_long": 35,
+  "seed": 6304,
+  "decoding": {
+    "temperature": 0.7,
+    "top_p": 0.9,
+    "do_sample": true
+  }
+}
+[run] python -m task3_grpo.analyze_group_size --config configs/grpo.yaml
+Cached prompts: 24
+Group sizes to analyze: [2, 4, 8]
+Cache row keys: ['clipped_at_max', 'completion', 'completion_tokens', 'generation_index', 'prompt_id', 'reward', 'source_index', 'terminated_with_eos']
+ K  n_groups  n_generations  informative_group_rate  uninformative_group_fraction  weak_signal_group_fraction  mean_within_group_std  relative_signal_variance  normalized_advantage_variance  frac_completions_nonzero_advantage  mean_abs_advantage  exp_informative_rate_all_subsets  exp_within_group_std_all_subsets
+ 2        96            192                0.937500                      0.062500                    0.510417               0.384567                  0.336835                       0.937500                            0.937500            0.937500                          0.947917                          0.385249
+ 4        48            192                0.958333                      0.041667                    0.250000               0.541004                  0.467726                       0.958333                            0.958333            0.830719                          0.958333                          0.548796
+ 8        24            192                0.958333                      0.041667                    0.125000               0.619054                  0.559895                       0.958333                            0.958333            0.793930                          0.958333                          0.619054
+ K                      reward  n_groups  n_generations  informative_group_rate  uninformative_group_fraction  weak_signal_group_fraction  mean_within_group_std  relative_signal_variance  normalized_advantage_variance  frac_completions_nonzero_advantage  mean_abs_advantage  exp_informative_rate_all_subsets  exp_within_group_std_all_subsets
+ 2 binary: 1[r > median=2.133]        96            192                0.187500                      0.812500                         NaN               0.093750                  0.046875                       0.187500                            0.187500            0.187500                          0.187500                          0.093750
+ 4 binary: 1[r > median=2.133]        48            192                0.354167                      0.645833                         NaN               0.163128                  0.075521                       0.354167                            0.354167            0.326255                          0.339881                          0.154230
+ 8 binary: 1[r > median=2.133]        24            192                0.458333                      0.541667                         NaN               0.191257                  0.082031                       0.458333                            0.458333            0.382513                          0.458333                          0.191257
+ K difficulty     reward  n_groups  n_generations  informative_group_rate  uninformative_group_fraction  weak_signal_group_fraction  mean_within_group_std  relative_signal_variance  normalized_advantage_variance  frac_completions_nonzero_advantage  mean_abs_advantage
+ 2       hard continuous        32             64                 0.84375                       0.15625                     0.43750               0.493401                  0.598438                        0.84375                             0.84375            0.843750
+ 2       hard     binary        32             64                 0.00000                       1.00000                         NaN               0.000000                  0.000000                        0.00000                             0.00000            0.000000
+ 2     medium continuous        32             64                 0.96875                       0.03125                     0.40625               0.412376                  0.304091                        0.96875                             0.96875            0.968750
+ 2     medium     binary        32             64                 0.43750                       0.56250                         NaN               0.218750                  0.109375                        0.43750                             0.43750            0.437500
+ 2       easy continuous        32             64                 1.00000                       0.00000                     0.68750               0.247925                  0.107976                        1.00000                             1.00000            1.000000
+ 2       easy     binary        32             64                 0.12500                       0.87500                         NaN               0.062500                  0.031250                        0.12500                             0.12500            0.125000
+ 4       hard continuous        16             64                 0.87500                       0.12500                     0.31250               0.661488                  0.786527                        0.87500                             0.87500            0.748827
+ 4       hard     binary        16             64                 0.00000                       1.00000                         NaN               0.000000                  0.000000                        0.00000                             0.00000            0.000000
+ 4     medium continuous        16             64                 1.00000                       0.00000                     0.12500               0.551694                  0.401719                        1.00000                             1.00000            0.873375
+ 4     medium     binary        16             64                 0.81250                       0.18750                         NaN               0.372756                  0.171875                        0.81250                             0.81250            0.745513
+ 4       easy continuous        16             64                 1.00000                       0.00000                     0.31250               0.409831                  0.214933                        1.00000                             1.00000            0.869954
+ 4       easy     binary        16             64                 0.25000                       0.75000                         NaN               0.116627                  0.054688                        0.25000                             0.25000            0.233253
+ 8       hard continuous         8             64                 0.87500                       0.12500                     0.12500               0.763369                  0.886901                        0.87500                             0.87500            0.756412
+ 8       hard     binary         8             64                 0.00000                       1.00000                         NaN               0.000000                  0.000000                        0.00000                             0.00000            0.000000
+ 8     medium continuous         8             64                 1.00000                       0.00000                     0.00000               0.599022                  0.446912                        1.00000                             1.00000            0.792621
+ 8     medium     binary         8             64                 1.00000                       0.00000                         NaN               0.417788                  0.179688                        1.00000                             1.00000            0.835576
+ 8       easy continuous         8             64                 1.00000                       0.00000                     0.25000               0.494772                  0.345872                        1.00000                             1.00000            0.832757
+ 8       easy     binary         8             64                 0.37500                       0.62500                         NaN               0.155982                  0.066406                        0.37500                             0.37500            0.311964
+[run] python -m task3_grpo.compare_normalization --config configs/grpo.yaml
+Fork updates: 8
+Compare loss_type='grpo' vs loss_type='dr_grpo' from the identical supplied midpoint.
+[run] python -m task3_grpo.evaluate --config configs/grpo.yaml --adapter checkpoints/grpo_midpoint_policy --name midpoint
+[eval midpoint] generated 16/165 (25s)
+[eval midpoint] generated 32/165 (68s)
+[eval midpoint] generated 48/165 (104s)
+[eval midpoint] generated 64/165 (151s)
+[eval midpoint] generated 80/165 (193s)
+[eval midpoint] generated 96/165 (234s)
+[eval midpoint] generated 112/165 (268s)
+[eval midpoint] generated 128/165 (304s)
+[eval midpoint] generated 144/165 (341s)
+[eval midpoint] generated 160/165 (377s)
+[eval midpoint] generated 165/165 (398s)
+{
+  "n_prompts": 165,
+  "reward_mean": 1.893320164535985,
+  "reward_std": 1.2856653599147867,
+  "effective_reward_mean": 1.893320164535985,
+  "kl_token_mean": -1.8968844986635555e-06,
+  "kl_seq_mean": -0.0005794004960493608,
+  "entropy_token_mean": 0.9691160260745795,
+  "sample_entropy_token_mean": 0.7768028795313496,
+  "length": {
+    "n": 165,
+    "mean": 305.44848484848484,
+    "std": 260.7671469950895,
+    "median": 236.0,
+    "q1": 56.0,
+    "q3": 504.0,
+    "iqr": 448.0,
+    "min": 2.0,
+    "max": 768.0
+  },
+  "eos_rate": 0.9151515151515152,
+  "truncation_rate": 0.08484848484848485,
+  "name": "midpoint",
+  "adapter": "checkpoints/grpo_midpoint_policy",
+  "max_new_tokens": 768,
+  "missing_eos_penalty": null,
+  "n_dropped_prompt_too_long": 35,
+  "seed": 6304,
+  "decoding": {
+    "temperature": 0.7,
+    "top_p": 0.9,
+    "do_sample": true
+  }
+}
+[run] python -m task3_grpo.continue_train --config configs/grpo.yaml --output outputs/task3_grpo/fork_grpo --updates 8 --loss-type grpo --run-name fork_grpo
+[fork_grpo] GRPO continuation: {"updates": 8, "prompts_per_update": 1, "policy_epochs": 1, "learning_rate": 5e-06, "clip_epsilon": 0.2, "kl_beta": 0.1, "num_generations": 4, "max_prompt_length": 256, "max_completion_length": 512, "mask_truncated_completions": true, "max_grad_norm": 1.0, "seed": 6304, "loss_type": "grpo", "generation": {"temperature": 0.7, "top_p": 0.9, "do_sample": true}}
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  loss_total += float(l_i)
+[fork_grpo] update 1/8 R=1.381 std=0.612 KL=0.0002 H=1.267 L=512 trunc=3 loss=-0.3297 gn=0.112 t=16s
+[fork_grpo] update 2/8 R=0.707 std=1.205 KL=0.0000 H=0.726 L=512 trunc=4 loss=0.0000 gn=0.000 t=15s
+[fork_grpo] update 3/8 R=2.740 std=0.000 KL=-0.0010 H=0.111 L=22 trunc=0 loss=0.0000 gn=0.004 t=2s
+[fork_grpo] update 4/8 R=1.673 std=0.437 KL=0.0001 H=0.716 L=486 trunc=2 loss=-0.3623 gn=0.081 t=15s
+[fork_grpo] update 5/8 R=1.318 std=0.572 KL=-0.0009 H=1.099 L=8 trunc=0 loss=0.0000 gn=2.321 t=1s
+[fork_grpo] update 6/8 R=0.047 std=1.073 KL=-0.0002 H=1.428 L=24 trunc=0 loss=0.0000 gn=0.900 t=2s
+[fork_grpo] update 7/8 R=2.729 std=0.620 KL=0.0002 H=0.830 L=274 trunc=0 loss=0.0000 gn=0.207 t=11s
+[fork_grpo] update 8/8 R=0.902 std=0.690 KL=-0.0002 H=1.193 L=87 trunc=0 loss=0.0000 gn=0.474 t=5s
+{
+  "run": "fork_grpo",
+  "config": {
+    "updates": 8,
+    "prompts_per_update": 1,
+    "policy_epochs": 1,
+    "learning_rate": 5e-06,
+    "clip_epsilon": 0.2,
+    "kl_beta": 0.1,
+    "num_generations": 4,
+    "max_prompt_length": 256,
+    "max_completion_length": 512,
+    "mask_truncated_completions": true,
+    "max_grad_norm": 1.0,
+    "seed": 6304,
+    "loss_type": "grpo",
+    "generation": {
+      "temperature": 0.7,
+      "top_p": 0.9,
+      "do_sample": true
+    }
+  },
+  "updates": 8,
+  "generated_tokens_total": 7698,
+  "uninformative_group_fraction": 0.125,
+  "wall_clock_s": 67.34141254425049,
+  "thermal_pause_s": 0.0,
+  "wall_clock_excluding_thermal_pauses_s": 67.34141254425049,
+  "peak_vram": {
+    "allocated_gib": 5.205069065093994,
+    "reserved_gib": 5.52734375
+  },
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "output": "/workspace/pa2/outputs/task3_grpo/fork_grpo"
+}
+[run] python -m task3_grpo.evaluate --config configs/grpo.yaml --adapter outputs/task3_grpo/fork_grpo --name fork_grpo
+[eval fork_grpo] generated 16/165 (17s)
+[eval fork_grpo] generated 32/165 (48s)
+[eval fork_grpo] generated 48/165 (75s)
+[eval fork_grpo] generated 64/165 (106s)
+[eval fork_grpo] generated 80/165 (137s)
+[eval fork_grpo] generated 96/165 (169s)
+[eval fork_grpo] generated 112/165 (196s)
+[eval fork_grpo] generated 128/165 (220s)
+[eval fork_grpo] generated 144/165 (247s)
+[eval fork_grpo] generated 160/165 (275s)
+[eval fork_grpo] generated 165/165 (290s)
+{
+  "n_prompts": 165,
+  "reward_mean": 1.8553973573626894,
+  "reward_std": 1.28379318896538,
+  "effective_reward_mean": 1.8553973573626894,
+  "kl_token_mean": 8.932042394748029e-05,
+  "kl_seq_mean": 0.027576192220052084,
+  "entropy_token_mean": 0.9838510899176734,
+  "sample_entropy_token_mean": 0.7850928347485312,
+  "length": {
+    "n": 165,
+    "mean": 308.73333333333335,
+    "std": 266.7777035088032,
+    "median": 233.0,
+    "q1": 56.0,
+    "q3": 503.0,
+    "iqr": 447.0,
+    "min": 2.0,
+    "max": 768.0
+  },
+  "eos_rate": 0.8787878787878788,
+  "truncation_rate": 0.12121212121212122,
+  "name": "fork_grpo",
+  "adapter": "outputs/task3_grpo/fork_grpo",
+  "max_new_tokens": 768,
+  "missing_eos_penalty": null,
+  "n_dropped_prompt_too_long": 35,
+  "seed": 6304,
+  "decoding": {
+    "temperature": 0.7,
+    "top_p": 0.9,
+    "do_sample": true
+  }
+}
+[run] python -m task3_grpo.continue_train --config configs/grpo.yaml --output outputs/task3_grpo/fork_dr_grpo --updates 8 --loss-type dr_grpo --run-name fork_dr_grpo
+[fork_dr_grpo] GRPO continuation: {"updates": 8, "prompts_per_update": 1, "policy_epochs": 1, "learning_rate": 5e-06, "clip_epsilon": 0.2, "kl_beta": 0.1, "num_generations": 4, "max_prompt_length": 256, "max_completion_length": 512, "mask_truncated_completions": true, "max_grad_norm": 1.0, "seed": 6304, "loss_type": "dr_grpo", "generation": {"temperature": 0.7, "top_p": 0.9, "do_sample": true}}
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  loss_total += float(l_i)
+[fork_dr_grpo] update 1/8 R=1.381 std=0.612 KL=0.0002 H=1.267 L=512 trunc=3 loss=-0.3297 gn=0.112 t=13s
+[fork_dr_grpo] update 2/8 R=0.093 std=1.061 KL=-0.0001 H=0.684 L=512 trunc=4 loss=0.0000 gn=0.000 t=12s
+[fork_dr_grpo] update 3/8 R=2.740 std=0.000 KL=-0.0004 H=0.111 L=22 trunc=0 loss=0.0000 gn=0.002 t=1s
+[fork_dr_grpo] update 4/8 R=0.248 std=1.189 KL=0.0001 H=0.750 L=512 trunc=4 loss=0.0000 gn=0.000 t=12s
+[fork_dr_grpo] update 5/8 R=1.318 std=0.572 KL=0.0002 H=1.100 L=8 trunc=0 loss=-0.0036 gn=0.028 t=1s
+[fork_dr_grpo] update 6/8 R=0.047 std=1.073 KL=0.0010 H=1.427 L=24 trunc=0 loss=0.0123 gn=0.044 t=2s
+[fork_dr_grpo] update 7/8 R=2.659 std=0.587 KL=-0.0001 H=0.811 L=266 trunc=0 loss=0.0247 gn=0.107 t=8s
+[fork_dr_grpo] update 8/8 R=0.031 std=0.979 KL=-0.0003 H=1.161 L=70 trunc=0 loss=0.0016 gn=0.061 t=3s
+{
+  "run": "fork_dr_grpo",
+  "config": {
+    "updates": 8,
+    "prompts_per_update": 1,
+    "policy_epochs": 1,
+    "learning_rate": 5e-06,
+    "clip_epsilon": 0.2,
+    "kl_beta": 0.1,
+    "num_generations": 4,
+    "max_prompt_length": 256,
+    "max_completion_length": 512,
+    "mask_truncated_completions": true,
+    "max_grad_norm": 1.0,
+    "seed": 6304,
+    "loss_type": "dr_grpo",
+    "generation": {
+      "temperature": 0.7,
+      "top_p": 0.9,
+      "do_sample": true
+    }
+  },
+  "updates": 8,
+  "generated_tokens_total": 7704,
+  "uninformative_group_fraction": 0.125,
+  "wall_clock_s": 52.08834767341614,
+  "thermal_pause_s": 0.0,
+  "wall_clock_excluding_thermal_pauses_s": 52.08834767341614,
+  "peak_vram": {
+    "allocated_gib": 5.205069065093994,
+    "reserved_gib": 5.53515625
+  },
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "output": "/workspace/pa2/outputs/task3_grpo/fork_dr_grpo"
+}
+[run] python -m task3_grpo.evaluate --config configs/grpo.yaml --adapter outputs/task3_grpo/fork_dr_grpo --name fork_dr_grpo
+[eval fork_dr_grpo] generated 16/165 (13s)
+[eval fork_dr_grpo] generated 32/165 (40s)
+[eval fork_dr_grpo] generated 48/165 (63s)
+[eval fork_dr_grpo] generated 64/165 (88s)
+[eval fork_dr_grpo] generated 80/165 (112s)
+[eval fork_dr_grpo] generated 96/165 (135s)
+[eval fork_dr_grpo] generated 112/165 (163s)
+[eval fork_dr_grpo] generated 128/165 (190s)
+[eval fork_dr_grpo] generated 144/165 (218s)
+[eval fork_dr_grpo] generated 160/165 (246s)
+[eval fork_dr_grpo] generated 165/165 (263s)
+{
+  "n_prompts": 165,
+  "reward_mean": 1.9162389119466146,
+  "reward_std": 1.2567461030672182,
+  "effective_reward_mean": 1.9162389119466146,
+  "kl_token_mean": 7.837502807132972e-05,
+  "kl_seq_mean": 0.024188908663662998,
+  "entropy_token_mean": 0.9730634266861306,
+  "sample_entropy_token_mean": 0.7803034589517408,
+  "length": {
+    "n": 165,
+    "mean": 308.630303030303,
+    "std": 261.33632251635254,
+    "median": 236.0,
+    "q1": 59.0,
+    "q3": 511.0,
+    "iqr": 452.0,
+    "min": 2.0,
+    "max": 768.0
+  },
+  "eos_rate": 0.9151515151515152,
+  "truncation_rate": 0.08484848484848485,
+  "name": "fork_dr_grpo",
+  "adapter": "outputs/task3_grpo/fork_dr_grpo",
+  "max_new_tokens": 768,
+  "missing_eos_penalty": null,
+  "n_dropped_prompt_too_long": 35,
+  "seed": 6304,
+  "decoding": {
+    "temperature": 0.7,
+    "top_p": 0.9,
+    "do_sample": true
+  }
+}
+                                           0             1                     2
+loss_type                               grpo       dr_grpo  midpoint (no update)
+fork                               fork_grpo  fork_dr_grpo              midpoint
+heldout_reward                      1.855397      1.916239               1.89332
+heldout_kl_token                    0.000089      0.000078             -0.000002
+heldout_kl_seq                      0.027576      0.024189             -0.000579
+heldout_entropy                     0.983851      0.973063              0.969116
+heldout_len_mean                  308.733333    308.630303            305.448485
+heldout_len_std                   266.777704    261.336323            260.767147
+heldout_len_iqr                        447.0         452.0                 448.0
+heldout_truncation_rate             0.121212      0.084848              0.084848
+train_reward_mean                   1.437145      1.064573                   NaN
+train_len_mean                      240.5625        240.75                   NaN
+train_grad_norm_mean                0.512399       0.04432                   NaN
+train_generated_tokens                7698.0        7704.0                   NaN
+n_completions_in_loss                   23.0          21.0                   NaN
+median_length_split                     33.0          29.0                   NaN
+spearman_len_vs_gradnorm           -0.242304      0.457516                   NaN
+spearman_len_vs_grad_per_abs_adv   -0.853029      0.426144                   NaN
+gradnorm_short_mean                  0.39387       0.00951                   NaN
+gradnorm_long_mean                  0.126811      0.038778                   NaN
+gradnorm_long_over_short            0.321962      4.077854                   NaN
+grad_per_abs_adv_short            294.123114    209.825709                   NaN
+grad_per_abs_adv_long               0.129809      0.041854                   NaN
+token_weight_short_mean             0.012849      0.000267                   NaN
+token_weight_long_mean              0.001591      0.000416                   NaN
+sequence_weight_short_mean             0.142      0.003923                   NaN
+sequence_weight_long_mean           0.229789       0.08715                   NaN
+mean_length_pos_adv                    192.3    115.333333                   NaN
+mean_length_neg_adv               119.888889        118.25                   NaN
+== stage t3 finished in 25.8 min

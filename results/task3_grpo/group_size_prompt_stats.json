@@ -1,0 +1,176 @@
+{
+  "binning_rule": "difficulty = mean learned reward of the prompt's 8 cached completions; tertiles (8 prompts each): hard < medium < easy",
+  "partition_rule": "each prompt's 8 completions (generation_index order) split into 8/K disjoint consecutive groups; total generations fixed at 192",
+  "zero_std_tolerance": 1e-06,
+  "binary_threshold_median_reward": 2.1328125,
+  "prompts": [
+    {
+      "source_index": "124",
+      "mean_reward_8": 2.375,
+      "difficulty": "medium",
+      "reward_std_8": 0.3900972998116143,
+      "n_clipped": 0
+    },
+    {
+      "source_index": "671",
+      "mean_reward_8": -1.45556640625,
+      "difficulty": "hard",
+      "reward_std_8": 1.9795737868410508,
+      "n_clipped": 2
+    },
+    {
+      "source_index": "510",
+      "mean_reward_8": 1.86572265625,
+      "difficulty": "medium",
+      "reward_std_8": 0.7184153897474302,
+      "n_clipped": 0
+    },
+    {
+      "source_index": "981",
+      "mean_reward_8": 2.2646484375,
+      "difficulty": "medium",
+      "reward_std_8": 0.28358507379548353,
+      "n_clipped": 0
+    },
+    {
+      "source_index": "175",
+      "mean_reward_8": 0.7420654296875,
+      "difficulty": "hard",
+      "reward_std_8": 0.8345445721364121,
+      "n_clipped": 7
+    },
+    {
+      "source_index": "185",
+      "mean_reward_8": 2.4599609375,
+      "difficulty": "easy",
+      "reward_std_8": 1.2204730251883498,
+      "n_clipped": 4
+    },
+    {
+      "source_index": "953",
+      "mean_reward_8": 0.73388671875,
+      "difficulty": "hard",
+      "reward_std_8": 0.7473388189352107,
+      "n_clipped": 0
+    },
+    {
+      "source_index": "873",
+      "mean_reward_8": 2.1845703125,
+      "difficulty": "medium",
+      "reward_std_8": 0.7471864697278944,
+      "n_clipped": 7
+    },
+    {
+      "source_index": "796",
+      "mean_reward_8": 1.81658935546875,
+      "difficulty": "medium",
+      "reward_std_8": 1.0774114690525276,
+      "n_clipped": 3
+    },
+    {
+      "source_index": "263",
+      "mean_reward_8": 2.4296875,
+      "difficulty": "easy",
+      "reward_std_8": 0.4283893743484863,
+      "n_clipped": 0
+    },
+    {
+      "source_index": "507",
+      "mean_reward_8": 3.220703125,
+      "difficulty": "easy",
+      "reward_std_8": 0.7185137816655707,
+      "n_clipped": 0
+    },
+    {
+      "source_index": "961",
+      "mean_reward_8": -0.1944580078125,
+      "difficulty": "hard",
+      "reward_std_8": 0.6329310623998741,
+      "n_clipped": 0
+    },
+    {
+      "source_index": "280",
+      "mean_reward_8": 1.2734375,
+      "difficulty": "hard",
+      "reward_std_8": 0.0,
+      "n_clipped": 0
+    },
+    {
+      "source_index": "936",
+      "mean_reward_8": 0.8939208984375,
+      "difficulty": "hard",
+      "reward_std_8": 1.0813008883524027,
+      "n_clipped": 0
+    },
+    {
+      "source_index": "254",
+      "mean_reward_8": 1.3321533203125,
+      "difficulty": "medium",
+      "reward_std_8": 0.9530207389339215,
+      "n_clipped": 6
+    },
+    {
+      "source_index": "463",
+      "mean_reward_8": 3.00390625,
+      "difficulty": "easy",
+      "reward_std_8": 0.1781095799246562,
+      "n_clipped": 0
+    },
+    {
+      "source_index": "436",
+      "mean_reward_8": 2.212890625,
+      "difficulty": "medium",
+      "reward_std_8": 0.3636748120182155,
+      "n_clipped": 0
+    },
+    {
+      "source_index": "942",
+      "mean_reward_8": 2.6875,
+      "difficulty": "easy",
+      "reward_std_8": 0.19200321449132043,
+      "n_clipped": 0
+    },
+    {
+      "source_index": "184",
+      "mean_reward_8": 2.966796875,
+      "difficulty": "easy",
+      "reward_std_8": 0.3191133709292974,
+      "n_clipped": 0
+    },
+    {
+      "source_index": "922",
+      "mean_reward_8": 2.4169921875,
+      "difficulty": "medium",
+      "reward_std_8": 0.2587853773322521,
+      "n_clipped": 0
+    },
+    {
+      "source_index": "755",
+      "mean_reward_8": 3.072265625,
+      "difficulty": "easy",
+      "reward_std_8": 0.4708246731031992,
+      "n_clipped": 0
+    },
+    {
+      "source_index": "457",
+      "mean_reward_8": -0.85198974609375,
+      "difficulty": "hard",
+      "reward_std_8": 0.47132480689723505,
+      "n_clipped": 0
+    },
+    {
+      "source_index": "832",
+      "mean_reward_8": 2.65625,
+      "difficulty": "easy",
+      "reward_std_8": 0.4307515235028194,
+      "n_clipped": 0
+    },
+    {
+      "source_index": "495",
+      "mean_reward_8": -1.42041015625,
+      "difficulty": "hard",
+      "reward_std_8": 0.35993681406126987,
+      "n_clipped": 0
+    }
+  ]
+}
