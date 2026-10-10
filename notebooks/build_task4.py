@@ -38,7 +38,8 @@ md(r"""
 ## 2. AI judge labels and calibration metrics
 """),
 code(r'''
-run_module("task4_safety.judge_responses", "--config", "configs/feedback.yaml")
+# All 4 x 450 AI labels are cached in judged_*.jsonl; re-judging is skipped (the judge is resumable anyway).
+run_module("task4_safety.judge_responses", "--config", "configs/feedback.yaml", skip_if_exists="results/task4_safety/judged_grpo.jsonl")
 run_module("task4_safety.evaluate_safety", "--config", "configs/feedback.yaml")
 cal = pd.read_csv(R / "safety_calibration_table.csv").set_index("policy")
 main_cols = ["safe_answer_rate", "safe_over_refusal_rate", "unsafe_compliance_rate", "unsafe_justified_refusal_rate", "ambiguous_rate",

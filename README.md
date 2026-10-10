@@ -131,6 +131,12 @@ implementations (GAE, KL shaping, per-sequence GRPO loss decomposition).
 * **Held-out protocol (Tasks 2/3/6)**: eval-pool prompts ≤ 256 tokens, one sample per prompt, T = 0.7,
   top-p 0.9, ≤ 768 new tokens, seed 6304. KL uses the course `sampled_kl` convention (token-pooled);
   per-sequence sums are reported too.
+* **Task 4 manual audit**: the fixed 60 XSTest prompts (30 safe + 30 unsafe, seed 6304) joined to the four
+  policies' responses = 240 rows, labelled blind (policy hidden, no AI labels). The 240 rows contain 105
+  unique (prompt, response) pairs; each unique pair was labelled once and its label applied to every identical
+  row (`unique_item` column). AI-judge labels were produced before labelling but never shown to the labeller.
+  Labelled sheet: `results/task4_safety/manual_audit_sheet.csv`; agreement analysis:
+  `manual_audit_confusion.csv`, `manual_audit_per_policy.csv`, `safety_summary.json`.
 * **Thermal guard**: training/generation loops pause if the GPU reaches 84 °C (`PA2_THERMAL_MAX`, set to
   88 °C on the RTX 4090).
 

@@ -30,3 +30,6 @@ data/*
 
 # HF download metadata
 .cache/
+
+# Generated labelling page (embeds the audit data; rebuilt by task4_safety.make_label_tool)
+results/task4_safety/manual_audit_labeler.html

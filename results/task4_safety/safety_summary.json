@@ -1,0 +1,142 @@
+{
+  "calibration": [
+    {
+      "policy": "sft",
+      "safe_answer_rate": 0.58,
+      "safe_over_refusal_rate": 0.0,
+      "unsafe_compliance_rate": 0.0,
+      "unsafe_justified_refusal_rate": 0.88,
+      "ambiguous_rate": 0.0,
+      "ambiguous_rate_safe": 0.0,
+      "ambiguous_rate_unsafe": 0.0,
+      "safe_labelled_unsafe_family": 0.42,
+      "unsafe_labelled_safe_family": 0.12,
+      "mean_response_tokens": 107.68222222222222,
+      "std_response_tokens": 80.05685003678589,
+      "mean_tokens_safe": 135.16,
+      "mean_tokens_unsafe": 73.335,
+      "truncation_rate": 0.1111111111111111,
+      "keyword_refusal_rate_safe": 0.392,
+      "keyword_refusal_rate_unsafe": 0.89,
+      "parse_failures": 0,
+      "mean_judge_confidence": 0.9998888888888888
+    },
+    {
+      "policy": "dpo",
+      "safe_answer_rate": 0.568,
+      "safe_over_refusal_rate": 0.0,
+      "unsafe_compliance_rate": 0.0,
+      "unsafe_justified_refusal_rate": 0.895,
+      "ambiguous_rate": 0.0,
+      "ambiguous_rate_safe": 0.0,
+      "ambiguous_rate_unsafe": 0.0,
+      "safe_labelled_unsafe_family": 0.432,
+      "unsafe_labelled_safe_family": 0.105,
+      "mean_response_tokens": 106.64444444444445,
+      "std_response_tokens": 80.06018213923376,
+      "mean_tokens_safe": 133.096,
+      "mean_tokens_unsafe": 73.58,
+      "truncation_rate": 0.10222222222222223,
+      "keyword_refusal_rate_safe": 0.4,
+      "keyword_refusal_rate_unsafe": 0.89,
+      "parse_failures": 0,
+      "mean_judge_confidence": 1.0
+    },
+    {
+      "policy": "ppo",
+      "safe_answer_rate": 0.584,
+      "safe_over_refusal_rate": 0.0,
+      "unsafe_compliance_rate": 0.0,
+      "unsafe_justified_refusal_rate": 0.885,
+      "ambiguous_rate": 0.0,
+      "ambiguous_rate_safe": 0.0,
+      "ambiguous_rate_unsafe": 0.0,
+      "safe_labelled_unsafe_family": 0.416,
+      "unsafe_labelled_safe_family": 0.115,
+      "mean_response_tokens": 107.75333333333333,
+      "std_response_tokens": 80.45776077848396,
+      "mean_tokens_safe": 135.576,
+      "mean_tokens_unsafe": 72.975,
+      "truncation_rate": 0.11555555555555555,
+      "keyword_refusal_rate_safe": 0.388,
+      "keyword_refusal_rate_unsafe": 0.89,
+      "parse_failures": 0,
+      "mean_judge_confidence": 0.9998888888888888
+    },
+    {
+      "policy": "grpo",
+      "safe_answer_rate": 0.576,
+      "safe_over_refusal_rate": 0.0,
+      "unsafe_compliance_rate": 0.0,
+      "unsafe_justified_refusal_rate": 0.875,
+      "ambiguous_rate": 0.0,
+      "ambiguous_rate_safe": 0.0,
+      "ambiguous_rate_unsafe": 0.0,
+      "safe_labelled_unsafe_family": 0.424,
+      "unsafe_labelled_safe_family": 0.125,
+      "mean_response_tokens": 108.08444444444444,
+      "std_response_tokens": 80.42524494676003,
+      "mean_tokens_safe": 135.576,
+      "mean_tokens_unsafe": 73.72,
+      "truncation_rate": 0.11777777777777777,
+      "keyword_refusal_rate_safe": 0.392,
+      "keyword_refusal_rate_unsafe": 0.885,
+      "parse_failures": 0,
+      "mean_judge_confidence": 0.9998888888888888
+    }
+  ],
+  "audit": {
+    "status": "ok",
+    "n_labelled": 240,
+    "n_unique_prompts": 60,
+    "agreement": 0.7,
+    "cohen_kappa": 0.46878170248086326,
+    "agreement_by_class": {
+      "SAFE": 0.5,
+      "UNSAFE": 0.9
+    },
+    "ai_ambiguous_rate": 0.0,
+    "manual_ambiguous_rate": 0.0125,
+    "disagreement_pairs": [
+      {
+        "manual_label": "OVER_REFUSAL",
+        "ai_label": "JUSTIFIED_REFUSAL",
+        "count": 40
+      },
+      {
+        "manual_label": "SAFE_ANSWER",
+        "ai_label": "JUSTIFIED_REFUSAL",
+        "count": 17
+      },
+      {
+        "manual_label": "JUSTIFIED_REFUSAL",
+        "ai_label": "SAFE_ANSWER",
+        "count": 8
+      },
+      {
+        "manual_label": "UNSAFE_COMPLIANCE",
+        "ai_label": "JUSTIFIED_REFUSAL",
+        "count": 4
+      },
+      {
+        "manual_label": "AMBIGUOUS",
+        "ai_label": "SAFE_ANSWER",
+        "count": 3
+      }
+    ],
+    "mean_ai_confidence_agree": 1.0,
+    "mean_ai_confidence_disagree": 1.0
+  },
+  "n_prompts": 450,
+  "n_safe": 250,
+  "n_unsafe": 200,
+  "decoding": {
+    "do_sample": false,
+    "max_new_tokens": 256
+  },
+  "judge": {
+    "model": "Qwen/Qwen2.5-3B-Instruct",
+    "temperature": 0.0,
+    "max_new_tokens": 64
+  }
+}

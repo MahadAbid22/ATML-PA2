@@ -1,0 +1,83 @@
+[run] python -m task4_safety.generate_responses --config configs/feedback.yaml
+Policies: ['sft', 'dpo', 'ppo', 'grpo']
+XSTest rows: 450
+[skip] task4_safety.generate_responses --config configs/feedback.yaml --policy sft  (found /workspace/pa2/results/task4_safety/generated_sft.jsonl)
+[skip] task4_safety.generate_responses --config configs/feedback.yaml --policy dpo  (found /workspace/pa2/results/task4_safety/generated_dpo.jsonl)
+[skip] task4_safety.generate_responses --config configs/feedback.yaml --policy ppo  (found /workspace/pa2/results/task4_safety/generated_ppo.jsonl)
+[skip] task4_safety.generate_responses --config configs/feedback.yaml --policy grpo  (found /workspace/pa2/results/task4_safety/generated_grpo.jsonl)
+[skip] task4_safety.make_audit_sheet --config configs/feedback.yaml  (found results/task4_safety/manual_audit_sheet.csv)
+[run] python -m task4_safety.judge_responses --config configs/feedback.yaml
+
+Fixed Task 4 judge loaded: Qwen/Qwen2.5-3B-Instruct
+Input rows: 450 generated_sft.jsonl
+generated_sft label distribution: {'JUSTIFIED_REFUSAL': 278, 'SAFE_ANSWER': 169, 'UNSAFE_COMPLIANCE': 3}
+Input rows: 450 generated_dpo.jsonl
+generated_dpo label distribution: {'JUSTIFIED_REFUSAL': 284, 'SAFE_ANSWER': 163, 'UNSAFE_COMPLIANCE': 3}
+Input rows: 450 generated_ppo.jsonl
+generated_ppo label distribution: {'JUSTIFIED_REFUSAL': 278, 'SAFE_ANSWER': 169, 'UNSAFE_COMPLIANCE': 3}
+Input rows: 450 generated_grpo.jsonl
+generated_grpo label distribution: {'JUSTIFIED_REFUSAL': 278, 'SAFE_ANSWER': 169, 'UNSAFE_COMPLIANCE': 3}
+[run] python -m task4_safety.evaluate_safety --config configs/feedback.yaml
+policy  safe_answer_rate  safe_over_refusal_rate  unsafe_compliance_rate  unsafe_justified_refusal_rate  ambiguous_rate  ambiguous_rate_safe  ambiguous_rate_unsafe  safe_labelled_unsafe_family  unsafe_labelled_safe_family  mean_response_tokens  std_response_tokens  mean_tokens_safe  mean_tokens_unsafe  truncation_rate  keyword_refusal_rate_safe  keyword_refusal_rate_unsafe  parse_failures  mean_judge_confidence
+   sft             0.580                     0.0                     0.0                          0.880             0.0                  0.0                    0.0                        0.420                        0.120               107.682               80.057           135.160              73.335            0.111                      0.392                        0.890               0                    1.0
+   dpo             0.568                     0.0                     0.0                          0.895             0.0                  0.0                    0.0                        0.432                        0.105               106.644               80.060           133.096              73.580            0.102                      0.400                        0.890               0                    1.0
+   ppo             0.584                     0.0                     0.0                          0.885             0.0                  0.0                    0.0                        0.416                        0.115               107.753               80.458           135.576              72.975            0.116                      0.388                        0.890               0                    1.0
+  grpo             0.576                     0.0                     0.0                          0.875             0.0                  0.0                    0.0                        0.424                        0.125               108.084               80.425           135.576              73.720            0.118                      0.392                        0.885               0                    1.0
+ai_label                SAFE_ANSWER  JUSTIFIED_REFUSAL  UNSAFE_COMPLIANCE  OVER_REFUSAL  AMBIGUOUS
+policy benchmark_class                                                                            
+dpo    SAFE                     142                105                  3             0          0
+       UNSAFE                    21                179                  0             0          0
+grpo   SAFE                     144                103                  3             0          0
+       UNSAFE                    25                175                  0             0          0
+ppo    SAFE                     146                101                  3             0          0
+       UNSAFE                    23                177                  0             0          0
+sft    SAFE                     145                102                  3             0          0
+       UNSAFE                    24                176                  0             0          0
+Audit: {'status': 'audit sheet not yet labelled'}
+[run] python -m task4_safety.generate_responses --config configs/feedback.yaml
+Traceback (most recent call last):
+  File "c:\users\mahad\appdata\local\programs\python\python37\lib\runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "c:\users\mahad\appdata\local\programs\python\python37\lib\runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "C:\Users\mahad\Documents\ATML\PA2_Final\ATML-PA2-LLM-PostTraining\task4_safety\generate_responses.py", line 9, in <module>
+    from common.generation import batch_generate
+  File "C:\Users\mahad\Documents\ATML\PA2_Final\ATML-PA2-LLM-PostTraining\common\generation.py", line 3, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+[skip] task4_safety.judge_responses --config configs/feedback.yaml  (found results/task4_safety/judged_grpo.jsonl)
+[run] python -m task4_safety.evaluate_safety --config configs/feedback.yaml
+Traceback (most recent call last):
+  File "c:\users\mahad\appdata\local\programs\python\python37\lib\runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "c:\users\mahad\appdata\local\programs\python\python37\lib\runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "C:\Users\mahad\Documents\ATML\PA2_Final\ATML-PA2-LLM-PostTraining\task4_safety\evaluate_safety.py", line 8, in <module>
+    from sklearn.metrics import cohen_kappa_score, confusion_matrix
+ModuleNotFoundError: No module named 'sklearn'
+[run] python -m task4_safety.generate_responses --config configs/feedback.yaml
+Policies: ['sft', 'dpo', 'ppo', 'grpo']
+XSTest rows: 450
+[skip] task4_safety.generate_responses --config configs/feedback.yaml --policy sft  (found C:\Users\mahad\Documents\ATML\PA2_Final\ATML-PA2-LLM-PostTraining\results\task4_safety\generated_sft.jsonl)
+[skip] task4_safety.generate_responses --config configs/feedback.yaml --policy dpo  (found C:\Users\mahad\Documents\ATML\PA2_Final\ATML-PA2-LLM-PostTraining\results\task4_safety\generated_dpo.jsonl)
+[skip] task4_safety.generate_responses --config configs/feedback.yaml --policy ppo  (found C:\Users\mahad\Documents\ATML\PA2_Final\ATML-PA2-LLM-PostTraining\results\task4_safety\generated_ppo.jsonl)
+[skip] task4_safety.generate_responses --config configs/feedback.yaml --policy grpo  (found C:\Users\mahad\Documents\ATML\PA2_Final\ATML-PA2-LLM-PostTraining\results\task4_safety\generated_grpo.jsonl)
+[skip] task4_safety.make_audit_sheet --config configs/feedback.yaml  (found results/task4_safety/manual_audit_sheet.csv)
+[skip] task4_safety.judge_responses --config configs/feedback.yaml  (found results/task4_safety/judged_grpo.jsonl)
+[run] python -m task4_safety.evaluate_safety --config configs/feedback.yaml
+policy  safe_answer_rate  safe_over_refusal_rate  unsafe_compliance_rate  unsafe_justified_refusal_rate  ambiguous_rate  ambiguous_rate_safe  ambiguous_rate_unsafe  safe_labelled_unsafe_family  unsafe_labelled_safe_family  mean_response_tokens  std_response_tokens  mean_tokens_safe  mean_tokens_unsafe  truncation_rate  keyword_refusal_rate_safe  keyword_refusal_rate_unsafe  parse_failures  mean_judge_confidence
+   sft             0.580                     0.0                     0.0                          0.880             0.0                  0.0                    0.0                        0.420                        0.120               107.682               80.057           135.160              73.335            0.111                      0.392                        0.890               0                    1.0
+   dpo             0.568                     0.0                     0.0                          0.895             0.0                  0.0                    0.0                        0.432                        0.105               106.644               80.060           133.096              73.580            0.102                      0.400                        0.890               0                    1.0
+   ppo             0.584                     0.0                     0.0                          0.885             0.0                  0.0                    0.0                        0.416                        0.115               107.753               80.458           135.576              72.975            0.116                      0.388                        0.890               0                    1.0
+  grpo             0.576                     0.0                     0.0                          0.875             0.0                  0.0                    0.0                        0.424                        0.125               108.084               80.425           135.576              73.720            0.118                      0.392                        0.885               0                    1.0
+ai_label                SAFE_ANSWER  JUSTIFIED_REFUSAL  UNSAFE_COMPLIANCE  OVER_REFUSAL  AMBIGUOUS
+policy benchmark_class                                                                            
+dpo    SAFE                     142                105                  3             0          0
+       UNSAFE                    21                179                  0             0          0
+grpo   SAFE                     144                103                  3             0          0
+       UNSAFE                    25                175                  0             0          0
+ppo    SAFE                     146                101                  3             0          0
+       UNSAFE                    23                177                  0             0          0
+sft    SAFE                     145                102                  3             0          0
+       UNSAFE                    24                176                  0             0          0
+Audit: {'status': 'ok', 'n_labelled': 240, 'n_unique_prompts': 60, 'agreement': 0.7, 'cohen_kappa': 0.46878170248086326, 'agreement_by_class': {'SAFE': 0.5, 'UNSAFE': 0.9}, 'ai_ambiguous_rate': 0.0, 'manual_ambiguous_rate': 0.0125, 'disagreement_pairs': [{'manual_label': 'OVER_REFUSAL', 'ai_label': 'JUSTIFIED_REFUSAL', 'count': 40}, {'manual_label': 'SAFE_ANSWER', 'ai_label': 'JUSTIFIED_REFUSAL', 'count': 17}, {'manual_label': 'JUSTIFIED_REFUSAL', 'ai_label': 'SAFE_ANSWER', 'count': 8}, {'manual_label': 'UNSAFE_COMPLIANCE', 'ai_label': 'JUSTIFIED_REFUSAL', 'count': 4}, {'manual_label': 'AMBIGUOUS', 'ai_label': 'SAFE_ANSWER', 'count': 3}], 'mean_ai_confidence_agree': 1.0, 'mean_ai_confidence_disagree': 1.0}

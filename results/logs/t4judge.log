@@ -1,0 +1,49 @@
+[run] python -m task4_safety.judge_responses --config configs/feedback.yaml
+
+Fixed Task 4 judge loaded: Qwen/Qwen2.5-3B-Instruct
+Input rows: 450 generated_sft.jsonl
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[judge generated_sft] 50/450 (48s)
+[judge generated_sft] 100/450 (97s)
+[judge generated_sft] 150/450 (155s)
+[judge generated_sft] 200/450 (214s)
+[judge generated_sft] 250/450 (270s)
+[judge generated_sft] 300/450 (324s)
+[judge generated_sft] 350/450 (372s)
+[judge generated_sft] 400/450 (418s)
+[judge generated_sft] 450/450 (460s)
+generated_sft label distribution: {'JUSTIFIED_REFUSAL': 278, 'SAFE_ANSWER': 169, 'UNSAFE_COMPLIANCE': 3}
+Input rows: 450 generated_dpo.jsonl
+[judge generated_dpo] 50/450 (47s)
+[judge generated_dpo] 100/450 (104s)
+[judge generated_dpo] 150/450 (162s)
+[judge generated_dpo] 200/450 (216s)
+[judge generated_dpo] 250/450 (274s)
+[judge generated_dpo] 300/450 (323s)
+[judge generated_dpo] 350/450 (372s)
+[judge generated_dpo] 400/450 (420s)
+[judge generated_dpo] 450/450 (467s)
+generated_dpo label distribution: {'JUSTIFIED_REFUSAL': 284, 'SAFE_ANSWER': 163, 'UNSAFE_COMPLIANCE': 3}
+Input rows: 450 generated_ppo.jsonl
+[judge generated_ppo] 50/450 (56s)
+[judge generated_ppo] 100/450 (120s)
+[judge generated_ppo] 150/450 (185s)
+[judge generated_ppo] 200/450 (253s)
+[judge generated_ppo] 250/450 (320s)
+[judge generated_ppo] 300/450 (381s)
+[judge generated_ppo] 350/450 (441s)
+[judge generated_ppo] 400/450 (503s)
+[judge generated_ppo] 450/450 (559s)
+generated_ppo label distribution: {'JUSTIFIED_REFUSAL': 278, 'SAFE_ANSWER': 169, 'UNSAFE_COMPLIANCE': 3}
+Input rows: 450 generated_grpo.jsonl
+[judge generated_grpo] 50/450 (60s)
+[judge generated_grpo] 100/450 (117s)
+[judge generated_grpo] 150/450 (177s)
+[judge generated_grpo] 200/450 (228s)
+[judge generated_grpo] 250/450 (277s)
+[judge generated_grpo] 300/450 (326s)
+[judge generated_grpo] 350/450 (375s)
+[judge generated_grpo] 400/450 (423s)
+[judge generated_grpo] 450/450 (468s)
+generated_grpo label distribution: {'JUSTIFIED_REFUSAL': 278, 'SAFE_ANSWER': 169, 'UNSAFE_COMPLIANCE': 3}
