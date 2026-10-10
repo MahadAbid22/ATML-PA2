@@ -14,16 +14,12 @@ wandb/
 # Student outputs
 outputs/
 
-# Downloaded course assets
-cached/*
-!cached/README.md
-checkpoints/*
-!checkpoints/README.md
-manifests/*
-!manifests/README.md
-data/*
-!data/README.md
-!data/word_limit_prompts.jsonl
+# Downloaded course assets (fetched by `python -m scripts.download_assets`; never committed)
+cached/
+checkpoints/
+manifests/
+manual/
+data/
 
 # Misc
 *.zip
