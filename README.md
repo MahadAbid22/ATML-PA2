@@ -26,7 +26,7 @@ bitsandbytes 0.50.2, single NVIDIA RTX 4090 (24 GB). The code was developed and 
 RTX 4070 Laptop GPU (8 GB), which is why it is memory-frugal. If a stale Hugging Face token is cached, set
 `HF_HUB_DISABLE_IMPLICIT_TOKEN=1` (all public models are downloaded anonymously).
 
-Scheduling used for the reported run (`driver.sh` logic): the standard PPO and standard GRPO continuations
+Scheduling used for the reported run: the standard PPO and standard GRPO continuations
 were run **alone** on the GPU (so their reported wall-clock time / peak VRAM are not distorted), after which
 the remaining stages of Tasks 1, 2, 3 and 5 ran as concurrent processes on the same GPU, followed by
 Task 4 generation. Concurrency changes only wall-clock time, never data, seeds or decoding.
