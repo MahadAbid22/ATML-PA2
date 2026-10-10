@@ -154,6 +154,29 @@ summary = pd.DataFrame({
 display(summary.round(4))
 summary.round(4).to_csv(R / "report_table_task5_feedback_source.csv")
 io.round(4).to_csv(R / "report_table_task5_domains.csv"); cp.round(4).to_csv(R / "report_table_task5_diagnostics.csv")'''),
+md(r"""
+## Judge raw-output audit (ties vs ambiguous outputs)
+
+The supplied judge parser maps an unparseable answer to TIE and, when the 3B judge emits several labels
+(e.g. `"A, B"`), silently keeps the **first** one. `task5_feedback.audit_judge_outputs` replays every judge
+call with identical inputs and decoding (it reproduces 100 % of the cached decisions), records the raw text,
+and separates single explicit labels from ambiguous multi-label outputs. It also replays the policy-vs-SFT
+calls on pairs whose two responses are **character-identical** (a calibrated judge must say TIE there).
+"""),
+code(r'''
+run_module("task5_feedback.audit_judge_outputs", "--config", "configs/feedback.yaml", skip_if_exists="results/task5_feedback/judge_raw_output_audit.json")
+au = js(R / "judge_raw_output_audit.json")
+print("replay matches cached decisions:", au["replay_matches_cached_decision"], "| calls replayed:", au["n_judged_calls"])
+rows = [{"set": "diagnostic (200 pairs x 2 orders)", **{k: v for k, v in au["diagnostic"].items() if not isinstance(v, dict)}}]
+for ds in ["gsm", "transfer"]:
+    for pol in ["rlvr", "rlaif"]:
+        b = au[f"{ds}_{pol}_vs_sft"]
+        for kind in ["identical_response_pairs", "different_response_pairs"]:
+            rows.append({"set": f"{ds}: {pol} vs SFT, {kind.replace('_', ' ')}", **{k: v for k, v in b[kind].items() if not isinstance(v, dict)}})
+display(pd.DataFrame(rows).set_index("set"))
+display(pd.DataFrame({f"{ds}_{pol}": {"win rate as reported": au[f"{ds}_{pol}_vs_sft"]["win_rate_as_reported"],
+                                      "win rate with identical pairs = TIE": au[f"{ds}_{pol}_vs_sft"]["win_rate_identical_pairs_forced_tie"]}
+                      for ds in ["gsm", "transfer"] for pol in ["rlvr", "rlaif"]}).round(4))'''),
 ]
 
 build("Task5_RLVR_vs_RLAIF", cells)

@@ -132,11 +132,11 @@
     ]
   },
   "inference_cost": {
-    "verifier_seconds_per_response": 7.94688860575358e-06,
+    "verifier_seconds_per_response": 7.854880144198735e-06,
     "judge_seconds_per_pairwise_call": 0.1999673238056906,
     "judge_calls_per_prompt_group_K4": 6,
     "judge_seconds_per_prompt_group_K4": 1.1998039428341436,
-    "verifier_seconds_per_prompt_group_K4": 3.178755442301432e-05,
+    "verifier_seconds_per_prompt_group_K4": 3.141952057679494e-05,
     "judge_model": "Qwen/Qwen2.5-3B-Instruct",
     "judge_detail": {
       "gsm": {

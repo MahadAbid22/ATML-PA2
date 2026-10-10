@@ -1,0 +1,73 @@
+[skip] task5_feedback.evaluate_math --config configs/feedback.yaml --dataset gsm  (found results/task5_feedback/summary_gsm.csv)
+[skip] task5_feedback.score_perturbations --config configs/feedback.yaml  (found results/task5_feedback/diagnostic_summary.json)
+[skip] task5_feedback.evaluate_math --config configs/feedback.yaml --dataset transfer  (found results/task5_feedback/summary_transfer.csv)
+[run] python -m task5_feedback.compare_feedback --config configs/feedback.yaml
+                                   0           1           2
+policy                           sft        rlvr       rlaif
+gsm_exact_accuracy          0.283333        0.29    0.273333
+svamp_exact_accuracy            0.45        0.47        0.46
+delta_exact_accuracy        0.166667        0.18    0.186667
+gsm_format_compliance       0.356667        0.37    0.346667
+svamp_format_compliance         0.58        0.59        0.58
+delta_format_compliance     0.223333        0.22    0.233333
+gsm_ai_win_rate_vs_sft           0.5         0.5    0.501667
+svamp_ai_win_rate_vs_sft         0.5       0.515        0.51
+delta_ai_win_rate_vs_sft         0.0       0.015    0.008333
+gsm_len_mean              276.383333  275.836667  274.533333
+svamp_len_mean                 163.8       163.7      163.86
+delta_len_mean           -112.583333 -112.136667 -110.673333
+gsm_len_std                87.393794   87.410901   87.256027
+svamp_len_std              72.339268   72.381634   72.459675
+delta_len_std             -15.054526  -15.029266  -14.796353
+gsm_truncation_rate             0.02        0.02    0.023333
+svamp_truncation_rate            0.0         0.0         0.0
+delta_truncation_rate          -0.02       -0.02   -0.023333
+policy  gsm_acc_gain_vs_sft  svamp_acc_gain_vs_sft
+   sft             0.000000                   0.00
+  rlvr             0.006667                   0.02
+ rlaif            -0.010000                   0.01
+ dataset policy  missing_final_format  correct  wrong_final  truncated_no_final
+     gsm    sft              0.623333 0.283333     0.073333            0.020000
+     gsm   rlvr              0.610000 0.290000     0.080000            0.020000
+     gsm  rlaif              0.630000 0.273333     0.073333            0.023333
+transfer    sft              0.420000 0.450000     0.130000            0.000000
+transfer   rlvr              0.410000 0.470000     0.120000            0.000000
+transfer  rlaif              0.420000 0.460000     0.120000            0.000000
+{'verifier_seconds_per_response': 7.94688860575358e-06, 'judge_seconds_per_pairwise_call': 0.1999673238056906, 'judge_calls_per_prompt_group_K4': 6, 'judge_seconds_per_prompt_group_K4': 1.1998039428341436, 'verifier_seconds_per_prompt_group_K4': 3.178755442301432e-05, 'judge_model': 'Qwen/Qwen2.5-3B-Instruct', 'judge_detail': {'gsm': {'new_judge_calls': 361, 'total_seconds': 69.33115916326642, 'seconds_per_call': 0.19205307247442222}, 'transfer': {'new_judge_calls': 107, 'total_seconds': 22.243328539654613, 'seconds_per_call': 0.20788157513695898}}}
+[skip] task5_feedback.evaluate_math --config configs/feedback.yaml --dataset gsm  (found results/task5_feedback/summary_gsm.csv)
+[skip] task5_feedback.score_perturbations --config configs/feedback.yaml  (found results/task5_feedback/diagnostic_summary.json)
+[skip] task5_feedback.evaluate_math --config configs/feedback.yaml --dataset transfer  (found results/task5_feedback/summary_transfer.csv)
+[run] python -m task5_feedback.compare_feedback --config configs/feedback.yaml
+                                   0           1           2
+policy                           sft        rlvr       rlaif
+gsm_exact_accuracy          0.283333        0.29    0.273333
+svamp_exact_accuracy            0.45        0.47        0.46
+delta_exact_accuracy        0.166667        0.18    0.186667
+gsm_format_compliance       0.356667        0.37    0.346667
+svamp_format_compliance         0.58        0.59        0.58
+delta_format_compliance     0.223333        0.22    0.233333
+gsm_ai_win_rate_vs_sft           0.5         0.5    0.501667
+svamp_ai_win_rate_vs_sft         0.5       0.515        0.51
+delta_ai_win_rate_vs_sft         0.0       0.015    0.008333
+gsm_len_mean              276.383333  275.836667  274.533333
+svamp_len_mean                 163.8       163.7      163.86
+delta_len_mean           -112.583333 -112.136667 -110.673333
+gsm_len_std                87.393794   87.410901   87.256027
+svamp_len_std              72.339268   72.381634   72.459675
+delta_len_std             -15.054526  -15.029266  -14.796353
+gsm_truncation_rate             0.02        0.02    0.023333
+svamp_truncation_rate            0.0         0.0         0.0
+delta_truncation_rate          -0.02       -0.02   -0.023333
+policy  gsm_acc_gain_vs_sft  svamp_acc_gain_vs_sft
+   sft             0.000000                   0.00
+  rlvr             0.006667                   0.02
+ rlaif            -0.010000                   0.01
+ dataset policy  missing_final_format  correct  wrong_final  truncated_no_final
+     gsm    sft              0.623333 0.283333     0.073333            0.020000
+     gsm   rlvr              0.610000 0.290000     0.080000            0.020000
+     gsm  rlaif              0.630000 0.273333     0.073333            0.023333
+transfer    sft              0.420000 0.450000     0.130000            0.000000
+transfer   rlvr              0.410000 0.470000     0.120000            0.000000
+transfer  rlaif              0.420000 0.460000     0.120000            0.000000
+{'verifier_seconds_per_response': 7.854880144198735e-06, 'judge_seconds_per_pairwise_call': 0.1999673238056906, 'judge_calls_per_prompt_group_K4': 6, 'judge_seconds_per_prompt_group_K4': 1.1998039428341436, 'verifier_seconds_per_prompt_group_K4': 3.141952057679494e-05, 'judge_model': 'Qwen/Qwen2.5-3B-Instruct', 'judge_detail': {'gsm': {'new_judge_calls': 361, 'total_seconds': 69.33115916326642, 'seconds_per_call': 0.19205307247442222}, 'transfer': {'new_judge_calls': 107, 'total_seconds': 22.243328539654613, 'seconds_per_call': 0.20788157513695898}}}
+[skip] task5_feedback.audit_judge_outputs --config configs/feedback.yaml  (found results/task5_feedback/judge_raw_output_audit.json)
