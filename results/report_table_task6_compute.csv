@@ -1,0 +1,4 @@
+run,wall-clock (min),peak VRAM alloc (GiB),generated tokens,models resident on GPU,GPU exclusive during run
+DPO standard (1 epoch),6.76,4.641,0,policy (+LoRA-off reference),False
+PPO standard (20 updates),2.193,5.91,5277,"policy, critic, RM",True
+GRPO standard (20 updates),2.525,5.212,20806,"policy, RM",True

@@ -1,0 +1,14 @@
+condition,n_prompts,mean_reward_diff_vs_SFT,ci95_low,ci95_high,excludes_zero
+DPO standard,165,-0.0397,-0.1238,0.0447,False
+PPO midpoint,165,-0.0103,-0.0604,0.0405,False
+PPO standard (20),165,-0.001,-0.0552,0.0522,False
+GRPO midpoint,165,-0.0116,-0.0656,0.0424,False
+GRPO standard (20),165,-0.0242,-0.0797,0.0295,False
+GRPO fork (1/T),165,-0.0496,-0.1093,0.0071,False
+Dr.GRPO fork (1/L),165,0.0113,-0.04,0.0617,False
+PPO ε=0.05,165,-0.0018,-0.0529,0.0482,False
+PPO ε=0.2,165,-0.0586,-0.1295,0.0065,False
+PPO ε=0.5,165,-0.0468,-0.1018,0.006,False
+PPO β_KL=0.0,165,0.004,-0.0426,0.0504,False
+PPO β_KL=0.1,165,-0.0586,-0.1293,0.0094,False
+PPO β_KL=0.2,165,-0.0791,-0.1426,-0.0162,True

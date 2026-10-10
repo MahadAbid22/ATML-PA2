@@ -1,0 +1,34 @@
+{
+  "n_prompts": 165,
+  "reward_mean": 1.8652758049242424,
+  "reward_std": 1.3039038260977296,
+  "effective_reward_mean": 1.7864879261363635,
+  "kl_token_mean": -0.0006560140098718599,
+  "kl_seq_mean": -0.19936862136378433,
+  "entropy_token_mean": 1.0010807608505263,
+  "sample_entropy_token_mean": 0.8051270069468829,
+  "length": {
+    "n": 165,
+    "mean": 303.90909090909093,
+    "std": 255.6561338171155,
+    "median": 242.0,
+    "q1": 54.0,
+    "q3": 529.0,
+    "iqr": 475.0,
+    "min": 2.0,
+    "max": 768.0
+  },
+  "eos_rate": 0.9212121212121213,
+  "truncation_rate": 0.07878787878787878,
+  "name": "dpo_standard",
+  "adapter": "outputs/task1_dpo/standard",
+  "max_new_tokens": 768,
+  "missing_eos_penalty": 1.0,
+  "n_dropped_prompt_too_long": 35,
+  "seed": 6304,
+  "decoding": {
+    "temperature": 0.7,
+    "top_p": 0.9,
+    "do_sample": true
+  }
+}

@@ -1,0 +1,3 @@
+[skip] task2_ppo.evaluate --config configs/ppo.yaml --adapter outputs/task1_dpo/standard --name dpo_standard  (found results/task2_ppo/heldout_dpo_standard.json)
+[skip] task2_ppo.evaluate --config configs/ppo.yaml --adapter outputs/task1_dpo/standard --name dpo_standard  (found results/task2_ppo/heldout_dpo_standard.json)
+[skip] task2_ppo.evaluate --config configs/ppo.yaml --adapter outputs/task1_dpo/standard --name dpo_standard  (found results/task2_ppo/heldout_dpo_standard.json)
