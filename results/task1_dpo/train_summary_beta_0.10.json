@@ -1,0 +1,27 @@
+{
+  "run": "beta_0.10",
+  "beta": 0.1,
+  "dataset": "data/dpo_standard_train.jsonl",
+  "n_pairs": 600,
+  "epochs": 1,
+  "optimizer_steps": 38,
+  "effective_batch_pairs": 16,
+  "learning_rate": 2e-05,
+  "max_sequence_length": 768,
+  "lora": {
+    "r": 8,
+    "alpha": 16,
+    "dropout": 0.05,
+    "target_modules": [
+      "q_proj",
+      "v_proj"
+    ]
+  },
+  "seed": 6304,
+  "wall_clock_s": 167.4831736087799,
+  "peak_vram": {
+    "allocated_gib": 4.640681266784668,
+    "reserved_gib": 4.83203125
+  },
+  "output": "/workspace/pa2/outputs/task1_dpo/beta_0.10"
+}

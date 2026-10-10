@@ -1,0 +1,322 @@
+[skip] task1_dpo.train --config configs/dpo.yaml --run-name standard  (found outputs/task1_dpo/standard/adapter_model.safetensors)
+[run] python -m task1_dpo.evaluate --config configs/dpo.yaml --adapter none --name sft
+[sft] held-out pairs: {"n_pairs": 240, "preference_accuracy": 0.0, "tie_fraction": 1.0, "dpo_loss_own_beta": 0.6931472420692444, "dpo_loss_beta_0.10": 0.6931472420692444, "margin_mean": 0.0, "margin_median": 0.0, "chosen_logratio_mean": 0.0, "rejected_logratio_mean": 0.0, "check_preference_accuracy_from_dpo_loss": 0.0, "n_dropped_overlength": 60}
+[sft] stratified acc: preferred_longer=0.000, length_matched=0.000, rejected_longer=0.000
+[sft] generated 16/231 (14s)
+[sft] generated 32/231 (27s)
+[sft] generated 48/231 (39s)
+[sft] generated 64/231 (49s)
+[sft] generated 80/231 (62s)
+[sft] generated 96/231 (76s)
+[sft] generated 112/231 (90s)
+[sft] generated 128/231 (101s)
+[sft] generated 144/231 (113s)
+[sft] generated 160/231 (124s)
+[sft] generated 176/231 (137s)
+[sft] generated 192/231 (151s)
+[sft] generated 208/231 (166s)
+[sft] generated 224/231 (182s)
+[sft] generated 231/231 (197s)
+[sft] generation: reward=1.461 KL_tok=0.0000 len=144.8
+[sft] word-limit compliance=0.560
+[run] python -m task1_dpo.evaluate --config configs/dpo.yaml --adapter outputs/task1_dpo/standard --name standard
+[standard] held-out pairs: {"n_pairs": 240, "preference_accuracy": 0.6291666666666667, "tie_fraction": 0.016666666666666666, "dpo_loss_own_beta": 0.6797136068344116, "dpo_loss_beta_0.10": 0.6797136068344116, "margin_mean": 0.2943463643391927, "margin_median": 0.28127098083496094, "chosen_logratio_mean": -0.2958124876022339, "rejected_logratio_mean": -0.5901588201522827, "check_preference_accuracy_from_dpo_loss": 0.6291666626930237, "n_dropped_overlength": 60}
+[standard] stratified acc: preferred_longer=0.446, length_matched=0.562, rejected_longer=0.684
+[standard] generated 16/231 (14s)
+[standard] generated 32/231 (29s)
+[standard] generated 48/231 (42s)
+[standard] generated 64/231 (53s)
+[standard] generated 80/231 (65s)
+[standard] generated 96/231 (77s)
+[standard] generated 112/231 (87s)
+[standard] generated 128/231 (97s)
+[standard] generated 144/231 (109s)
+[standard] generated 160/231 (121s)
+[standard] generated 176/231 (134s)
+[standard] generated 192/231 (146s)
+[standard] generated 208/231 (161s)
+[standard] generated 224/231 (176s)
+[standard] generated 231/231 (185s)
+[standard] generation: reward=1.486 KL_tok=0.0001 len=143.5
+[standard] word-limit compliance=0.580
+[run] python -m task1_dpo.ablate_beta --config configs/dpo.yaml
+Required beta values: [0.03, 0.1, 0.3]
+Short-run examples per condition: 600
+[run] python -m task1_dpo.train --config configs/dpo.yaml --run-name beta_0.03 --output outputs/task1_dpo/beta_0.03 --beta 0.03 --max-examples 600
+[beta_0.03] beta=0.03 pairs=600 micro-batches=300 optimizer steps=38
+[beta_0.03] step 5/38 loss=0.6930 acc=0.562 margin=0.000 gnorm=0.595 t=26s
+[beta_0.03] step 10/38 loss=0.6930 acc=0.688 margin=0.000 gnorm=0.622 t=55s
+[beta_0.03] step 15/38 loss=0.6922 acc=0.688 margin=0.002 gnorm=0.554 t=85s
+[beta_0.03] step 20/38 loss=0.6915 acc=0.812 margin=0.003 gnorm=0.561 t=113s
+[beta_0.03] step 25/38 loss=0.6924 acc=0.562 margin=0.001 gnorm=0.659 t=148s
+[beta_0.03] step 30/38 loss=0.6922 acc=0.750 margin=0.002 gnorm=0.495 t=178s
+[beta_0.03] step 35/38 loss=0.6917 acc=0.625 margin=0.003 gnorm=0.559 t=210s
+[beta_0.03] step 38/38 loss=0.6889 acc=0.750 margin=0.009 gnorm=0.849 t=226s
+{
+  "run": "beta_0.03",
+  "beta": 0.03,
+  "dataset": "data/dpo_standard_train.jsonl",
+  "n_pairs": 600,
+  "epochs": 1,
+  "optimizer_steps": 38,
+  "effective_batch_pairs": 16,
+  "learning_rate": 2e-05,
+  "max_sequence_length": 768,
+  "lora": {
+    "r": 8,
+    "alpha": 16,
+    "dropout": 0.05,
+    "target_modules": [
+      "q_proj",
+      "v_proj"
+    ]
+  },
+  "seed": 6304,
+  "wall_clock_s": 226.6666965484619,
+  "peak_vram": {
+    "allocated_gib": 4.640681266784668,
+    "reserved_gib": 4.83203125
+  },
+  "output": "/workspace/pa2/outputs/task1_dpo/beta_0.03"
+}
+[run] python -m task1_dpo.evaluate --config configs/dpo.yaml --adapter outputs/task1_dpo/beta_0.03 --name beta_0.03 --beta 0.03
+[beta_0.03] held-out pairs: {"n_pairs": 240, "preference_accuracy": 0.6291666666666667, "tie_fraction": 0.016666666666666666, "dpo_loss_own_beta": 0.691208004951477, "dpo_loss_beta_0.10": 0.6868717670440674, "margin_mean": 0.13089799086252848, "margin_median": 0.1126708984375, "chosen_logratio_mean": -0.11109563708305359, "rejected_logratio_mean": -0.24199362099170685, "check_preference_accuracy_from_dpo_loss": 0.6291666626930237, "n_dropped_overlength": 60}
+[beta_0.03] stratified acc: preferred_longer=0.486, length_matched=0.588, rejected_longer=0.697
+[beta_0.03] generated 16/231 (14s)
+[beta_0.03] generated 32/231 (29s)
+[beta_0.03] generated 48/231 (43s)
+[beta_0.03] generated 64/231 (57s)
+[beta_0.03] generated 80/231 (72s)
+[beta_0.03] generated 96/231 (85s)
+[beta_0.03] generated 112/231 (98s)
+[beta_0.03] generated 128/231 (113s)
+[beta_0.03] generated 144/231 (126s)
+[beta_0.03] generated 160/231 (135s)
+[beta_0.03] generated 176/231 (144s)
+[beta_0.03] generated 192/231 (153s)
+[beta_0.03] generated 208/231 (163s)
+[beta_0.03] generated 224/231 (174s)
+[beta_0.03] generated 231/231 (180s)
+[beta_0.03] generation: reward=1.448 KL_tok=-0.0002 len=143.4
+[beta_0.03] word-limit compliance=0.560
+[run] python -m task1_dpo.train --config configs/dpo.yaml --run-name beta_0.10 --output outputs/task1_dpo/beta_0.10 --beta 0.1 --max-examples 600
+[beta_0.10] beta=0.1 pairs=600 micro-batches=300 optimizer steps=38
+[beta_0.10] step 5/38 loss=0.6920 acc=0.688 margin=0.002 gnorm=1.959 t=17s
+[beta_0.10] step 10/38 loss=0.6940 acc=0.500 margin=-0.002 gnorm=2.051 t=38s
+[beta_0.10] step 15/38 loss=0.6901 acc=0.750 margin=0.006 gnorm=1.812 t=61s
+[beta_0.10] step 20/38 loss=0.6890 acc=0.812 margin=0.008 gnorm=1.841 t=85s
+[beta_0.10] step 25/38 loss=0.6906 acc=0.500 margin=0.005 gnorm=2.173 t=109s
+[beta_0.10] step 30/38 loss=0.6906 acc=0.688 margin=0.005 gnorm=1.629 t=131s
+[beta_0.10] step 35/38 loss=0.6880 acc=0.625 margin=0.011 gnorm=1.825 t=156s
+[beta_0.10] step 38/38 loss=0.6799 acc=0.750 margin=0.027 gnorm=2.779 t=167s
+{
+  "run": "beta_0.10",
+  "beta": 0.1,
+  "dataset": "data/dpo_standard_train.jsonl",
+  "n_pairs": 600,
+  "epochs": 1,
+  "optimizer_steps": 38,
+  "effective_batch_pairs": 16,
+  "learning_rate": 2e-05,
+  "max_sequence_length": 768,
+  "lora": {
+    "r": 8,
+    "alpha": 16,
+    "dropout": 0.05,
+    "target_modules": [
+      "q_proj",
+      "v_proj"
+    ]
+  },
+  "seed": 6304,
+  "wall_clock_s": 167.4831736087799,
+  "peak_vram": {
+    "allocated_gib": 4.640681266784668,
+    "reserved_gib": 4.83203125
+  },
+  "output": "/workspace/pa2/outputs/task1_dpo/beta_0.10"
+}
+[run] python -m task1_dpo.evaluate --config configs/dpo.yaml --adapter outputs/task1_dpo/beta_0.10 --name beta_0.10 --beta 0.1
+[beta_0.10] held-out pairs: {"n_pairs": 240, "preference_accuracy": 0.6083333333333333, "tie_fraction": 0.016666666666666666, "dpo_loss_own_beta": 0.6871583461761475, "dpo_loss_beta_0.10": 0.6871583461761475, "margin_mean": 0.1248563845952352, "margin_median": 0.0982666015625, "chosen_logratio_mean": -0.10394485294818878, "rejected_logratio_mean": -0.22880123555660248, "check_preference_accuracy_from_dpo_loss": 0.6083333492279053, "n_dropped_overlength": 60}
+[beta_0.10] stratified acc: preferred_longer=0.473, length_matched=0.588, rejected_longer=0.697
+[beta_0.10] generated 16/231 (10s)
+[beta_0.10] generated 32/231 (20s)
+[beta_0.10] generated 48/231 (31s)
+[beta_0.10] generated 64/231 (40s)
+[beta_0.10] generated 80/231 (51s)
+[beta_0.10] generated 96/231 (61s)
+[beta_0.10] generated 112/231 (71s)
+[beta_0.10] generated 128/231 (82s)
+[beta_0.10] generated 144/231 (93s)
+[beta_0.10] generated 160/231 (103s)
+[beta_0.10] generated 176/231 (112s)
+[beta_0.10] generated 192/231 (120s)
+[beta_0.10] generated 208/231 (131s)
+[beta_0.10] generated 224/231 (141s)
+[beta_0.10] generated 231/231 (148s)
+[beta_0.10] generation: reward=1.488 KL_tok=-0.0002 len=143.3
+[beta_0.10] word-limit compliance=0.560
+[run] python -m task1_dpo.train --config configs/dpo.yaml --run-name beta_0.30 --output outputs/task1_dpo/beta_0.30 --beta 0.3 --max-examples 600
+[beta_0.30] beta=0.3 pairs=600 micro-batches=300 optimizer steps=38
+[beta_0.30] step 5/38 loss=0.6889 acc=0.625 margin=0.009 gnorm=5.857 t=16s
+[beta_0.30] step 10/38 loss=0.6909 acc=0.625 margin=0.005 gnorm=6.109 t=39s
+[beta_0.30] step 15/38 loss=0.6863 acc=0.688 margin=0.014 gnorm=5.399 t=62s
+[beta_0.30] step 20/38 loss=0.6776 acc=0.750 margin=0.032 gnorm=5.426 t=85s
+[beta_0.30] step 25/38 loss=0.6847 acc=0.625 margin=0.019 gnorm=6.485 t=109s
+[beta_0.30] step 30/38 loss=0.6886 acc=0.688 margin=0.011 gnorm=4.814 t=132s
+[beta_0.30] step 35/38 loss=0.6811 acc=0.625 margin=0.028 gnorm=5.392 t=156s
+[beta_0.30] step 38/38 loss=0.6556 acc=0.750 margin=0.080 gnorm=8.000 t=168s
+{
+  "run": "beta_0.30",
+  "beta": 0.3,
+  "dataset": "data/dpo_standard_train.jsonl",
+  "n_pairs": 600,
+  "epochs": 1,
+  "optimizer_steps": 38,
+  "effective_batch_pairs": 16,
+  "learning_rate": 2e-05,
+  "max_sequence_length": 768,
+  "lora": {
+    "r": 8,
+    "alpha": 16,
+    "dropout": 0.05,
+    "target_modules": [
+      "q_proj",
+      "v_proj"
+    ]
+  },
+  "seed": 6304,
+  "wall_clock_s": 167.99845623970032,
+  "peak_vram": {
+    "allocated_gib": 4.640681266784668,
+    "reserved_gib": 4.83203125
+  },
+  "output": "/workspace/pa2/outputs/task1_dpo/beta_0.30"
+}
+[run] python -m task1_dpo.evaluate --config configs/dpo.yaml --adapter outputs/task1_dpo/beta_0.30 --name beta_0.30 --beta 0.3
+[beta_0.30] held-out pairs: {"n_pairs": 240, "preference_accuracy": 0.6083333333333333, "tie_fraction": 0.016666666666666666, "dpo_loss_own_beta": 0.6783519387245178, "dpo_loss_beta_0.10": 0.6877543926239014, "margin_mean": 0.11248497168223064, "margin_median": 0.08191299438476562, "chosen_logratio_mean": -0.10347234457731247, "rejected_logratio_mean": -0.21595731377601624, "check_preference_accuracy_from_dpo_loss": 0.6083333492279053, "n_dropped_overlength": 60}
+[beta_0.30] stratified acc: preferred_longer=0.486, length_matched=0.550, rejected_longer=0.711
+[beta_0.30] generated 16/231 (10s)
+[beta_0.30] generated 32/231 (20s)
+[beta_0.30] generated 48/231 (31s)
+[beta_0.30] generated 64/231 (41s)
+[beta_0.30] generated 80/231 (51s)
+[beta_0.30] generated 96/231 (63s)
+[beta_0.30] generated 112/231 (73s)
+[beta_0.30] generated 128/231 (84s)
+[beta_0.30] generated 144/231 (95s)
+[beta_0.30] generated 160/231 (105s)
+[beta_0.30] generated 176/231 (114s)
+[beta_0.30] generated 192/231 (123s)
+[beta_0.30] generated 208/231 (135s)
+[beta_0.30] generated 224/231 (149s)
+[beta_0.30] generated 231/231 (159s)
+[beta_0.30] generation: reward=1.456 KL_tok=-0.0002 len=142.8
+[beta_0.30] word-limit compliance=0.540
+condition                     budget  beta  heldout_dpo_loss_own_beta  heldout_dpo_loss_beta0.10  heldout_pref_acc  heldout_margin_mean  kl_token_mean  kl_seq_mean  rm_score_mean  rm_score_std   len_mean    len_std  len_iqr  truncation_rate  entropy  word_limit_compliance
+      sft    none (reference policy)  0.10                   0.693147                   0.693147          0.000000             0.000000       0.000000     0.000000       1.461253      1.243777 144.831169 106.248610    222.5         0.380952 0.937083                   0.56
+ standard         1 epoch, all pairs  0.10                   0.679714                   0.679714          0.629167             0.294346       0.000104     0.014942       1.486488      1.198120 143.536797 105.123022    222.5         0.389610 0.956952                   0.58
+beta_0.03 short run, first 600 pairs  0.03                   0.691208                   0.686872          0.629167             0.130898      -0.000203    -0.029160       1.448475      1.218398 143.385281 105.324317    222.5         0.359307 0.946812                   0.56
+beta_0.10 short run, first 600 pairs  0.10                   0.687158                   0.687158          0.608333             0.124856      -0.000185    -0.026574       1.487598      1.208310 143.303030 105.830972    223.5         0.376623 0.939788                   0.56
+beta_0.30 short run, first 600 pairs  0.30                   0.678352                   0.687754          0.608333             0.112485      -0.000183    -0.026135       1.455763      1.238249 142.792208 105.762285    223.5         0.367965 0.935868                   0.54
+[run] python -m task1_dpo.analyze_length --config configs/dpo.yaml
+Length-balanced train rows: 1500
+Length-stratified eval rows: 246
+[run] python -m task1_dpo.train --config configs/dpo.yaml --run-name length_balanced --dataset data/dpo_length_balanced_train.jsonl --output outputs/task1_dpo/length_balanced
+[length_balanced] beta=0.1 pairs=1400 micro-batches=700 optimizer steps=88
+[length_balanced] step 5/88 loss=0.6941 acc=0.500 margin=-0.002 gnorm=3.191 t=21s
+[length_balanced] step 10/88 loss=0.6914 acc=0.500 margin=0.004 gnorm=1.709 t=41s
+[length_balanced] step 15/88 loss=0.6872 acc=0.625 margin=0.012 gnorm=1.786 t=61s
+[length_balanced] step 20/88 loss=0.6863 acc=0.625 margin=0.014 gnorm=2.133 t=85s
+[length_balanced] step 25/88 loss=0.6961 acc=0.562 margin=-0.005 gnorm=1.889 t=109s
+[length_balanced] step 30/88 loss=0.6791 acc=0.812 margin=0.029 gnorm=2.016 t=131s
+[length_balanced] step 35/88 loss=0.6894 acc=0.562 margin=0.009 gnorm=1.806 t=152s
+[length_balanced] step 40/88 loss=0.6878 acc=0.625 margin=0.012 gnorm=1.791 t=172s
+[length_balanced] step 45/88 loss=0.6845 acc=0.625 margin=0.019 gnorm=1.800 t=197s
+[length_balanced] step 50/88 loss=0.6653 acc=0.625 margin=0.059 gnorm=1.604 t=224s
+[length_balanced] step 55/88 loss=0.6875 acc=0.562 margin=0.013 gnorm=2.090 t=251s
+[length_balanced] step 60/88 loss=0.6966 acc=0.500 margin=-0.001 gnorm=2.280 t=280s
+[length_balanced] step 65/88 loss=0.6828 acc=0.625 margin=0.024 gnorm=1.964 t=308s
+[length_balanced] step 70/88 loss=0.6835 acc=0.625 margin=0.026 gnorm=1.886 t=332s
+[length_balanced] step 75/88 loss=0.6730 acc=0.625 margin=0.048 gnorm=1.778 t=351s
+[length_balanced] step 80/88 loss=0.7050 acc=0.562 margin=-0.016 gnorm=2.180 t=377s
+[length_balanced] step 85/88 loss=0.6967 acc=0.562 margin=-0.002 gnorm=2.447 t=404s
+[length_balanced] step 88/88 loss=0.7325 acc=0.250 margin=-0.070 gnorm=3.034 t=416s
+{
+  "run": "length_balanced",
+  "beta": 0.1,
+  "dataset": "data/dpo_length_balanced_train.jsonl",
+  "n_pairs": 1400,
+  "epochs": 1,
+  "optimizer_steps": 88,
+  "effective_batch_pairs": 16,
+  "learning_rate": 2e-05,
+  "max_sequence_length": 768,
+  "lora": {
+    "r": 8,
+    "alpha": 16,
+    "dropout": 0.05,
+    "target_modules": [
+      "q_proj",
+      "v_proj"
+    ]
+  },
+  "seed": 6304,
+  "wall_clock_s": 416.91011238098145,
+  "peak_vram": {
+    "allocated_gib": 4.634320259094238,
+    "reserved_gib": 4.833984375
+  },
+  "output": "/workspace/pa2/outputs/task1_dpo/length_balanced"
+}
+[run] python -m task1_dpo.evaluate --config configs/dpo.yaml --adapter outputs/task1_dpo/length_balanced --name length_balanced
+[length_balanced] held-out pairs: {"n_pairs": 240, "preference_accuracy": 0.6041666666666666, "tie_fraction": 0.016666666666666666, "dpo_loss_own_beta": 0.6785446405410767, "dpo_loss_beta_0.10": 0.6785446405410767, "margin_mean": 0.40852610270182294, "margin_median": 0.35010528564453125, "chosen_logratio_mean": -1.2040019035339355, "rejected_logratio_mean": -1.612527847290039, "check_preference_accuracy_from_dpo_loss": 0.6041666865348816, "n_dropped_overlength": 60}
+[length_balanced] stratified acc: preferred_longer=0.392, length_matched=0.613, rejected_longer=0.750
+[length_balanced] generated 16/231 (15s)
+[length_balanced] generated 32/231 (29s)
+[length_balanced] generated 48/231 (43s)
+[length_balanced] generated 64/231 (59s)
+[length_balanced] generated 80/231 (72s)
+[length_balanced] generated 96/231 (84s)
+[length_balanced] generated 112/231 (95s)
+[length_balanced] generated 128/231 (107s)
+[length_balanced] generated 144/231 (121s)
+[length_balanced] generated 160/231 (134s)
+[length_balanced] generated 176/231 (147s)
+[length_balanced] generated 192/231 (160s)
+[length_balanced] generated 208/231 (174s)
+[length_balanced] generated 224/231 (187s)
+[length_balanced] generated 231/231 (200s)
+[length_balanced] generation: reward=1.484 KL_tok=0.0025 len=143.8
+[length_balanced] word-limit compliance=0.620
+[skip] task1_dpo.evaluate --config configs/dpo.yaml --adapter outputs/task1_dpo/standard --name standard  (found results/task1_dpo/eval_standard.json)
+                              dataset  n_pairs  chosen_tokens_mean  rejected_tokens_mean  frac_chosen_longer  frac_rejected_longer  mean_len_diff_chosen_minus_rejected  median_len_diff  frac_relative_diff_gt_20pct_chosen_longer  frac_relative_diff_gt_20pct_rejected_longer  spearman_len_diff_vs_score_diff  n_dropped_overlength
+                 standard_train (all)     1500          282.114667            239.664667            0.562667              0.422000                            42.450000             18.0                                   0.442667                                     0.301333                         0.078160                   NaN
+        standard_train (after filter)     1214          227.023064            188.098023            0.565898              0.416804                            38.925041             16.0                                   0.452224                                     0.300659                         0.086003                 286.0
+          length_balanced_train (all)     1500          156.855333            151.692000            0.491333              0.486000                             5.163333              0.0                                   0.318000                                     0.320000                         0.053506                   NaN
+ length_balanced_train (after filter)     1400          155.471429            150.287857            0.490714              0.487143                             5.183571              0.0                                   0.314286                                     0.319286                         0.065973                 100.0
+                  standard_eval (all)      300          274.403333            243.756667            0.533333              0.443333                            30.646667              5.0                                   0.396667                                     0.333333                         0.142510                   NaN
+         standard_eval (after filter)      240          206.145833            186.587500            0.529167              0.445833                            19.558333              3.5                                   0.400000                                     0.345833                         0.096003                  60.0
+         length_stratified_eval (all)      246          147.455285            144.760163            0.483740              0.500000                             2.695122             -0.5                                   0.313008                                     0.321138                         0.045871                   NaN
+length_stratified_eval (after filter)      230          146.760870            143.773913            0.478261              0.504348                             2.986957             -1.0                                   0.304348                                     0.317391                         0.073568                  16.0
+      condition  acc_preferred_longer  margin_preferred_longer  acc_length_matched  margin_length_matched  acc_rejected_longer  margin_rejected_longer  acc_all_strata  acc_standard_heldout  gen_len_mean  gen_len_std  gen_len_iqr  rm_score_mean  word_limit_compliance  word_limit_words_mean  word_limit_words_std
+            sft              0.000000                 0.000000              0.0000               0.000000             0.000000                0.000000        0.000000              0.000000    144.831169   106.248610        222.5       1.461253                   0.56                  40.18             20.649346
+       standard              0.445946                -0.061163              0.5625               0.125657             0.684211                0.454793        0.565217              0.629167    143.536797   105.123022        222.5       1.486488                   0.58                  38.34             17.586648
+length_balanced              0.391892                -0.502970              0.6125               0.314157             0.750000                1.327959        0.586957              0.604167    143.809524   105.768073        222.5       1.484096                   0.62                  37.80             17.025791
+      beta_0.03              0.486486                -0.034791              0.5875               0.058888             0.697368                0.199673        0.591304              0.629167    143.385281   105.324317        222.5       1.448475                   0.56                  40.08             21.001302
+      beta_0.10              0.472973                -0.020395              0.5875               0.046997             0.697368                0.184250        0.586957              0.608333    143.303030   105.830972        223.5       1.487598                   0.56                  40.02             21.005820
+      beta_0.30              0.486486                -0.028847              0.5500               0.057777             0.710526                0.168768        0.582609              0.608333    142.792208   105.762285        223.5       1.455763                   0.54                  39.56             20.133392
+                    words                     compliance              
+condition length_balanced   sft standard length_balanced  sft standard
+prompt_id                                                             
+wl01                 31.4  33.2     31.4             1.0  1.0      1.0
+wl02                 26.8  27.6     27.6             0.4  0.2      0.2
+wl03                 24.4  24.2     23.2             1.0  1.0      1.0
+wl04                 38.6  42.0     42.0             0.4  0.2      0.2
+wl05                 52.8  61.6     56.8             0.6  0.4      0.6
+wl06                 27.0  27.0     27.6             0.8  0.6      0.6
+wl07                 49.4  53.6     54.0             0.2  0.2      0.2
+wl08                 33.2  32.0     31.4             0.8  1.0      1.0
+wl09                 25.2  26.4     25.2             1.0  1.0      1.0
+wl10                 69.2  74.2     64.2             0.0  0.0      0.0
+== stage t1 finished in 46.1 min

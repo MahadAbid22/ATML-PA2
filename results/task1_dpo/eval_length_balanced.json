@@ -1,0 +1,130 @@
+{
+  "name": "length_balanced",
+  "adapter": "outputs/task1_dpo/length_balanced",
+  "beta": 0.1,
+  "heldout": {
+    "n_pairs": 240,
+    "preference_accuracy": 0.6041666666666666,
+    "tie_fraction": 0.016666666666666666,
+    "dpo_loss_own_beta": 0.6785446405410767,
+    "dpo_loss_beta_0.10": 0.6785446405410767,
+    "margin_mean": 0.40852610270182294,
+    "margin_median": 0.35010528564453125,
+    "chosen_logratio_mean": -1.2040019035339355,
+    "rejected_logratio_mean": -1.612527847290039,
+    "check_preference_accuracy_from_dpo_loss": 0.6041666865348816,
+    "n_dropped_overlength": 60
+  },
+  "stratified": {
+    "all": {
+      "n_pairs": 230,
+      "preference_accuracy": 0.5869565217391305,
+      "tie_fraction": 0.0,
+      "dpo_loss_own_beta": 0.6780994534492493,
+      "dpo_loss_beta_0.10": 0.6780994534492493,
+      "margin_mean": 0.3862507612808891,
+      "margin_median": 0.2066802978515625,
+      "chosen_logratio_mean": -1.3041484355926514,
+      "rejected_logratio_mean": -1.690399169921875,
+      "check_preference_accuracy_from_dpo_loss": 0.5869565010070801
+    },
+    "n_dropped_overlength": 16,
+    "dropped_by_stratum": {
+      "preferred_longer": 8,
+      "rejected_longer": 6,
+      "length_matched": 2
+    },
+    "preferred_longer": {
+      "n_pairs": 74,
+      "preference_accuracy": 0.3918918918918919,
+      "tie_fraction": 0.0,
+      "dpo_loss_own_beta": 0.7222515940666199,
+      "dpo_loss_beta_0.10": 0.7222515940666199,
+      "margin_mean": -0.5029702830959011,
+      "margin_median": -0.3759765625,
+      "chosen_logratio_mean": -1.9290070533752441,
+      "rejected_logratio_mean": -1.4260368347167969,
+      "check_preference_accuracy_from_dpo_loss": 0.3918918967247009
+    },
+    "length_matched": {
+      "n_pairs": 80,
+      "preference_accuracy": 0.6125,
+      "tie_fraction": 0.0,
+      "dpo_loss_own_beta": 0.6795137524604797,
+      "dpo_loss_beta_0.10": 0.6795137524604797,
+      "margin_mean": 0.31415739059448244,
+      "margin_median": 0.1322307586669922,
+      "chosen_logratio_mean": -0.9690488576889038,
+      "rejected_logratio_mean": -1.2832063436508179,
+      "check_preference_accuracy_from_dpo_loss": 0.612500011920929
+    },
+    "rejected_longer": {
+      "n_pairs": 76,
+      "preference_accuracy": 0.75,
+      "tie_fraction": 0.0,
+      "dpo_loss_own_beta": 0.63362056016922,
+      "dpo_loss_beta_0.10": 0.63362056016922,
+      "margin_mean": 1.3279590104755603,
+      "margin_median": 1.0860671997070312,
+      "chosen_logratio_mean": -1.0484695434570312,
+      "rejected_logratio_mean": -2.3764286041259766,
+      "check_preference_accuracy_from_dpo_loss": 0.75
+    }
+  },
+  "generation": {
+    "n_prompts": 231,
+    "reward_mean": 1.4840963784750405,
+    "reward_std": 1.1984203286488602,
+    "effective_reward_mean": 1.4840963784750405,
+    "kl_token_mean": 0.002504238889993924,
+    "kl_seq_mean": 0.36013340227531665,
+    "entropy_token_mean": 0.9635114057508759,
+    "sample_entropy_token_mean": 0.7861025886604543,
+    "length": {
+      "n": 231,
+      "mean": 143.8095238095238,
+      "std": 105.7680731610775,
+      "median": 150.0,
+      "q1": 33.5,
+      "q3": 256.0,
+      "iqr": 222.5,
+      "min": 2.0,
+      "max": 256.0
+    },
+    "eos_rate": 0.6190476190476191,
+    "truncation_rate": 0.38095238095238093,
+    "n_dropped_prompt_too_long": 9,
+    "max_new_tokens": 256
+  },
+  "word_limit": {
+    "n_prompts": 10,
+    "samples_per_prompt": 5,
+    "compliance_rate": 0.62,
+    "words": {
+      "n": 50,
+      "mean": 37.8,
+      "std": 17.025790760502378,
+      "median": 32.0,
+      "q1": 27.0,
+      "q3": 41.75,
+      "iqr": 14.75,
+      "min": 19.0,
+      "max": 95.0
+    },
+    "tokens": {
+      "n": 50,
+      "mean": 44.52,
+      "std": 18.75974848619528,
+      "median": 38.0,
+      "q1": 31.0,
+      "q3": 52.0,
+      "iqr": 21.0,
+      "min": 23.0,
+      "max": 106.0
+    },
+    "reward_mean": 3.4634375,
+    "reward_compliant_mean": 3.584110383064516,
+    "reward_noncompliant_mean": 3.266550164473684
+  },
+  "eval_wall_clock_s": 322.43724393844604
+}

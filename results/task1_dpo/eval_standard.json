@@ -1,0 +1,130 @@
+{
+  "name": "standard",
+  "adapter": "outputs/task1_dpo/standard",
+  "beta": 0.1,
+  "heldout": {
+    "n_pairs": 240,
+    "preference_accuracy": 0.6291666666666667,
+    "tie_fraction": 0.016666666666666666,
+    "dpo_loss_own_beta": 0.6797136068344116,
+    "dpo_loss_beta_0.10": 0.6797136068344116,
+    "margin_mean": 0.2943463643391927,
+    "margin_median": 0.28127098083496094,
+    "chosen_logratio_mean": -0.2958124876022339,
+    "rejected_logratio_mean": -0.5901588201522827,
+    "check_preference_accuracy_from_dpo_loss": 0.6291666626930237,
+    "n_dropped_overlength": 60
+  },
+  "stratified": {
+    "all": {
+      "n_pairs": 230,
+      "preference_accuracy": 0.5652173913043478,
+      "tie_fraction": 0.0,
+      "dpo_loss_own_beta": 0.6854676604270935,
+      "dpo_loss_beta_0.10": 0.6854676604270935,
+      "margin_mean": 0.17430764903192936,
+      "margin_median": 0.13605880737304688,
+      "chosen_logratio_mean": -0.4249480664730072,
+      "rejected_logratio_mean": -0.5992556214332581,
+      "check_preference_accuracy_from_dpo_loss": 0.5652173757553101
+    },
+    "n_dropped_overlength": 16,
+    "dropped_by_stratum": {
+      "preferred_longer": 8,
+      "rejected_longer": 6,
+      "length_matched": 2
+    },
+    "preferred_longer": {
+      "n_pairs": 74,
+      "preference_accuracy": 0.44594594594594594,
+      "tie_fraction": 0.0,
+      "dpo_loss_own_beta": 0.697168231010437,
+      "dpo_loss_beta_0.10": 0.697168231010437,
+      "margin_mean": -0.06116341255806588,
+      "margin_median": -0.10277557373046875,
+      "chosen_logratio_mean": -0.6155097484588623,
+      "rejected_logratio_mean": -0.5543463230133057,
+      "check_preference_accuracy_from_dpo_loss": 0.44594594836235046
+    },
+    "length_matched": {
+      "n_pairs": 80,
+      "preference_accuracy": 0.5625,
+      "tie_fraction": 0.0,
+      "dpo_loss_own_beta": 0.6875118017196655,
+      "dpo_loss_beta_0.10": 0.6875118017196655,
+      "margin_mean": 0.12565717697143555,
+      "margin_median": 0.09906578063964844,
+      "chosen_logratio_mean": -0.299234539270401,
+      "rejected_logratio_mean": -0.42489171028137207,
+      "check_preference_accuracy_from_dpo_loss": 0.5625
+    },
+    "rejected_longer": {
+      "n_pairs": 76,
+      "preference_accuracy": 0.6842105263157895,
+      "tie_fraction": 0.0,
+      "dpo_loss_own_beta": 0.6719232797622681,
+      "dpo_loss_beta_0.10": 0.6719232797622681,
+      "margin_mean": 0.45479312695954976,
+      "margin_median": 0.449249267578125,
+      "chosen_logratio_mean": -0.37173110246658325,
+      "rejected_logratio_mean": -0.8265242576599121,
+      "check_preference_accuracy_from_dpo_loss": 0.6842105388641357
+    }
+  },
+  "generation": {
+    "n_prompts": 231,
+    "reward_mean": 1.4864883422851562,
+    "reward_std": 1.198120484029827,
+    "effective_reward_mean": 1.4864883422851562,
+    "kl_token_mean": 0.00010409790769857115,
+    "kl_seq_mean": 0.014941880197236032,
+    "entropy_token_mean": 0.9569523299786079,
+    "sample_entropy_token_mean": 0.7774521389100183,
+    "length": {
+      "n": 231,
+      "mean": 143.53679653679654,
+      "std": 105.12302187001909,
+      "median": 150.0,
+      "q1": 33.5,
+      "q3": 256.0,
+      "iqr": 222.5,
+      "min": 2.0,
+      "max": 256.0
+    },
+    "eos_rate": 0.6103896103896104,
+    "truncation_rate": 0.38961038961038963,
+    "n_dropped_prompt_too_long": 9,
+    "max_new_tokens": 256
+  },
+  "word_limit": {
+    "n_prompts": 10,
+    "samples_per_prompt": 5,
+    "compliance_rate": 0.58,
+    "words": {
+      "n": 50,
+      "mean": 38.34,
+      "std": 17.586648460739546,
+      "median": 32.0,
+      "q1": 27.0,
+      "q3": 44.5,
+      "iqr": 17.5,
+      "min": 19.0,
+      "max": 87.0
+    },
+    "tokens": {
+      "n": 50,
+      "mean": 45.32,
+      "std": 19.8303416253879,
+      "median": 38.0,
+      "q1": 32.25,
+      "q3": 54.25,
+      "iqr": 22.0,
+      "min": 22.0,
+      "max": 103.0
+    },
+    "reward_mean": 3.40140625,
+    "reward_compliant_mean": 3.4974407327586206,
+    "reward_noncompliant_mean": 3.2687872023809526
+  },
+  "eval_wall_clock_s": 312.9673898220062
+}

@@ -1,0 +1,6 @@
+condition,budget,beta,heldout_dpo_loss_own_beta,heldout_pref_acc,heldout_margin_mean,kl_token_mean,kl_seq_mean,rm_score_mean,rm_score_std,len_mean,len_std,len_iqr,word_limit_compliance
+sft,none (reference policy),0.1,0.6931,0.0,0.0,0.0,0.0,1.4613,1.2438,144.8312,106.2486,222.5,0.56
+standard,"1 epoch, all pairs",0.1,0.6797,0.6292,0.2943,0.0001,0.0149,1.4865,1.1981,143.5368,105.123,222.5,0.58
+beta_0.03,"short run, first 600 pairs",0.03,0.6912,0.6292,0.1309,-0.0002,-0.0292,1.4485,1.2184,143.3853,105.3243,222.5,0.56
+beta_0.10,"short run, first 600 pairs",0.1,0.6872,0.6083,0.1249,-0.0002,-0.0266,1.4876,1.2083,143.303,105.831,223.5,0.56
+beta_0.30,"short run, first 600 pairs",0.3,0.6784,0.6083,0.1125,-0.0002,-0.0261,1.4558,1.2382,142.7922,105.7623,223.5,0.54
