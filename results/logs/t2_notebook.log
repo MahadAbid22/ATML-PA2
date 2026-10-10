@@ -1,0 +1,150 @@
+[skip] task2_ppo.continue_train --config configs/ppo.yaml --run-name standard  (found outputs/task2_ppo/standard/adapter_model.safetensors)
+[skip] task2_ppo.evaluate --config configs/ppo.yaml --adapter outputs/task2_ppo/standard --name standard  (found results/task2_ppo/heldout_standard.json)
+[skip] task2_ppo.evaluate --config configs/ppo.yaml --adapter none --name sft  (found results/task2_ppo/heldout_sft.json)
+[skip] task2_ppo.evaluate --config configs/ppo.yaml --adapter checkpoints/ppo_midpoint_policy --name midpoint  (found results/task2_ppo/heldout_midpoint.json)
+[run] python -m task2_ppo.analyze_clipping --config configs/ppo.yaml
+Cached PPO rollouts: 32
+Required epsilon values: [0.05, 0.2, 0.5]
+Cache keys: ['clipped_at_max', 'effective_terminal_reward', 'old_logprobs', 'prompt_id', 'raw_terminal_reward', 'ref_logprobs', 'response', 'response_tokens', 'source_index', 'terminated_with_eos', 'values']
+[skip] task2_ppo.evaluate --config configs/ppo.yaml --adapter checkpoints/ppo_midpoint_policy --name midpoint  (found results/task2_ppo/heldout_midpoint.json)
+[skip] task2_ppo.continue_train --config configs/ppo.yaml --output outputs/task2_ppo/fork_eps0.05_kl0.10 --updates 8 --clip-epsilon 0.05 --kl-beta 0.1 --run-name fork_eps0.05_kl0.10  (found outputs/task2_ppo/fork_eps0.05_kl0.10/adapter_model.safetensors)
+[skip] task2_ppo.evaluate --config configs/ppo.yaml --adapter outputs/task2_ppo/fork_eps0.05_kl0.10 --name fork_eps0.05_kl0.10  (found results/task2_ppo/heldout_fork_eps0.05_kl0.10.json)
+[skip] task2_ppo.continue_train --config configs/ppo.yaml --output outputs/task2_ppo/fork_eps0.20_kl0.10 --updates 8 --clip-epsilon 0.2 --kl-beta 0.1 --run-name fork_eps0.20_kl0.10  (found outputs/task2_ppo/fork_eps0.20_kl0.10/adapter_model.safetensors)
+[skip] task2_ppo.evaluate --config configs/ppo.yaml --adapter outputs/task2_ppo/fork_eps0.20_kl0.10 --name fork_eps0.20_kl0.10  (found results/task2_ppo/heldout_fork_eps0.20_kl0.10.json)
+[skip] task2_ppo.continue_train --config configs/ppo.yaml --output outputs/task2_ppo/fork_eps0.50_kl0.10 --updates 8 --clip-epsilon 0.5 --kl-beta 0.1 --run-name fork_eps0.50_kl0.10  (found outputs/task2_ppo/fork_eps0.50_kl0.10/adapter_model.safetensors)
+[skip] task2_ppo.evaluate --config configs/ppo.yaml --adapter outputs/task2_ppo/fork_eps0.50_kl0.10 --name fork_eps0.50_kl0.10  (found results/task2_ppo/heldout_fork_eps0.50_kl0.10.json)
+                                                       0                    1                    2
+eps                                                 0.05                  0.2                  0.5
+fork                                 fork_eps0.05_kl0.10  fork_eps0.20_kl0.10  fork_eps0.50_kl0.10
+cached_clip_fraction                            0.106081             0.008282             0.005559
+cached_affected_token_fraction                  0.052303             0.004538              0.00329
+cached_clipped_surrogate                       -0.005319            -0.003931            -0.003274
+replay_clip_fraction_final                      0.106989             0.008509             0.005559
+replay_affected_fraction_final                  0.052644             0.004652              0.00329
+replay_approx_kl_final                           0.00003                 -0.0             0.000045
+heldout_reward                                  1.903175               1.8464              1.85817
+heldout_reward_effective                        1.818326              1.74943             1.736958
+heldout_kl_token                               -0.000004             0.000002             0.000006
+heldout_kl_seq                                 -0.001096             0.000748             0.001908
+heldout_entropy                                 0.972332             0.990054              0.98507
+heldout_len_mean                              304.593939           311.860606           311.957576
+heldout_len_std                               258.550483           265.268316           267.909758
+heldout_len_iqr                                    454.0                472.0                471.0
+heldout_truncation_rate                         0.084848              0.09697             0.121212
+stab_mean_post_update_kl                        0.000312             0.000029             -0.00024
+stab_max_post_update_kl                         0.003585             0.000986             0.001025
+stab_max_abs_log_ratio                           0.03047             0.042007              0.03941
+stab_policy_loss_std                            0.000745             0.000277             0.000467
+stab_grad_norm_max                               2.99426             2.939016             2.932232
+train_clip_fraction_mean                             0.0                  0.0                  0.0
+train_clip_fraction_last_epoch_mean                  0.0                  0.0                  0.0
+train_reward_mean                               0.445114             0.819382             0.847946
+train_kl_token_last                             0.000162            -0.000271            -0.000214
+train_generated_tokens                            1971.0               1971.0               1993.0
+[run] python -m task2_ppo.ablate_kl --config configs/ppo.yaml
+KL beta conditions: [0.0, 0.1, 0.2]
+Fork update budget: 8
+[skip] task2_ppo.evaluate --config configs/ppo.yaml --adapter checkpoints/ppo_midpoint_policy --name midpoint  (found results/task2_ppo/heldout_midpoint.json)
+[skip] task2_ppo.continue_train --config configs/ppo.yaml --output outputs/task2_ppo/fork_eps0.20_kl0.00 --updates 8 --clip-epsilon 0.2 --kl-beta 0.0 --run-name fork_eps0.20_kl0.00  (found outputs/task2_ppo/fork_eps0.20_kl0.00/adapter_model.safetensors)
+[skip] task2_ppo.evaluate --config configs/ppo.yaml --adapter outputs/task2_ppo/fork_eps0.20_kl0.00 --name fork_eps0.20_kl0.00  (found results/task2_ppo/heldout_fork_eps0.20_kl0.00.json)
+[skip] task2_ppo.continue_train --config configs/ppo.yaml --output outputs/task2_ppo/fork_eps0.20_kl0.10 --updates 8 --clip-epsilon 0.2 --kl-beta 0.1 --run-name fork_eps0.20_kl0.10  (found outputs/task2_ppo/fork_eps0.20_kl0.10/adapter_model.safetensors)
+[skip] task2_ppo.evaluate --config configs/ppo.yaml --adapter outputs/task2_ppo/fork_eps0.20_kl0.10 --name fork_eps0.20_kl0.10  (found results/task2_ppo/heldout_fork_eps0.20_kl0.10.json)
+[skip] task2_ppo.continue_train --config configs/ppo.yaml --output outputs/task2_ppo/fork_eps0.20_kl0.20 --updates 8 --clip-epsilon 0.2 --kl-beta 0.2 --run-name fork_eps0.20_kl0.20  (found outputs/task2_ppo/fork_eps0.20_kl0.20/adapter_model.safetensors)
+[skip] task2_ppo.evaluate --config configs/ppo.yaml --adapter outputs/task2_ppo/fork_eps0.20_kl0.20 --name fork_eps0.20_kl0.20  (found results/task2_ppo/heldout_fork_eps0.20_kl0.20.json)
+                                                       0                    1                    2
+kl_beta                                              0.0                  0.1                  0.2
+fork                                 fork_eps0.20_kl0.00  fork_eps0.20_kl0.10  fork_eps0.20_kl0.20
+heldout_reward                                  1.908993               1.8464             1.825837
+heldout_reward_effective                        1.830205              1.74943             1.747049
+heldout_kl_token                                0.000043             0.000002                 -0.0
+heldout_kl_seq                                  0.013317             0.000748            -0.000025
+heldout_entropy                                 0.981846             0.990054             0.971737
+heldout_len_mean                              308.563636           311.860606           312.054545
+heldout_len_std                               263.663826           265.268316           265.359978
+heldout_len_iqr                                    455.0                472.0                475.0
+heldout_truncation_rate                         0.078788              0.09697             0.078788
+stab_mean_post_update_kl                        0.000305             0.000029            -0.000058
+stab_max_post_update_kl                         0.000769             0.000986             0.001557
+stab_max_abs_log_ratio                          0.037193             0.042007             0.039406
+stab_policy_loss_std                            0.000269             0.000277             0.000284
+stab_grad_norm_max                               2.94655             2.939016             2.946351
+train_clip_fraction_mean                             0.0                  0.0                  0.0
+train_clip_fraction_last_epoch_mean                  0.0                  0.0                  0.0
+train_reward_mean                               0.686234             0.819382             1.284622
+train_kl_token_last                              0.00057            -0.000271             0.000144
+train_generated_tokens                            2014.0               1971.0               1947.0
+[skip] task2_ppo.continue_train --config configs/ppo.yaml --run-name standard  (found outputs/task2_ppo/standard/adapter_model.safetensors)
+[skip] task2_ppo.evaluate --config configs/ppo.yaml --adapter outputs/task2_ppo/standard --name standard  (found results/task2_ppo/heldout_standard.json)
+[skip] task2_ppo.evaluate --config configs/ppo.yaml --adapter none --name sft  (found results/task2_ppo/heldout_sft.json)
+[skip] task2_ppo.evaluate --config configs/ppo.yaml --adapter checkpoints/ppo_midpoint_policy --name midpoint  (found results/task2_ppo/heldout_midpoint.json)
+[run] python -m task2_ppo.analyze_clipping --config configs/ppo.yaml
+Cached PPO rollouts: 32
+Required epsilon values: [0.05, 0.2, 0.5]
+Cache keys: ['clipped_at_max', 'effective_terminal_reward', 'old_logprobs', 'prompt_id', 'raw_terminal_reward', 'ref_logprobs', 'response', 'response_tokens', 'source_index', 'terminated_with_eos', 'values']
+[skip] task2_ppo.evaluate --config configs/ppo.yaml --adapter checkpoints/ppo_midpoint_policy --name midpoint  (found results/task2_ppo/heldout_midpoint.json)
+[skip] task2_ppo.continue_train --config configs/ppo.yaml --output outputs/task2_ppo/fork_eps0.05_kl0.10 --updates 8 --clip-epsilon 0.05 --kl-beta 0.1 --run-name fork_eps0.05_kl0.10  (found outputs/task2_ppo/fork_eps0.05_kl0.10/adapter_model.safetensors)
+[skip] task2_ppo.evaluate --config configs/ppo.yaml --adapter outputs/task2_ppo/fork_eps0.05_kl0.10 --name fork_eps0.05_kl0.10  (found results/task2_ppo/heldout_fork_eps0.05_kl0.10.json)
+[skip] task2_ppo.continue_train --config configs/ppo.yaml --output outputs/task2_ppo/fork_eps0.20_kl0.10 --updates 8 --clip-epsilon 0.2 --kl-beta 0.1 --run-name fork_eps0.20_kl0.10  (found outputs/task2_ppo/fork_eps0.20_kl0.10/adapter_model.safetensors)
+[skip] task2_ppo.evaluate --config configs/ppo.yaml --adapter outputs/task2_ppo/fork_eps0.20_kl0.10 --name fork_eps0.20_kl0.10  (found results/task2_ppo/heldout_fork_eps0.20_kl0.10.json)
+[skip] task2_ppo.continue_train --config configs/ppo.yaml --output outputs/task2_ppo/fork_eps0.50_kl0.10 --updates 8 --clip-epsilon 0.5 --kl-beta 0.1 --run-name fork_eps0.50_kl0.10  (found outputs/task2_ppo/fork_eps0.50_kl0.10/adapter_model.safetensors)
+[skip] task2_ppo.evaluate --config configs/ppo.yaml --adapter outputs/task2_ppo/fork_eps0.50_kl0.10 --name fork_eps0.50_kl0.10  (found results/task2_ppo/heldout_fork_eps0.50_kl0.10.json)
+                                                       0                    1                    2
+eps                                                 0.05                  0.2                  0.5
+fork                                 fork_eps0.05_kl0.10  fork_eps0.20_kl0.10  fork_eps0.50_kl0.10
+cached_clip_fraction                            0.106081             0.008282             0.005559
+cached_affected_token_fraction                  0.052303             0.004538              0.00329
+cached_clipped_surrogate                       -0.005319            -0.003931            -0.003274
+replay_clip_fraction_final                      0.106989             0.008509             0.005559
+replay_affected_fraction_final                  0.052644             0.004652              0.00329
+replay_approx_kl_final                           0.00003                 -0.0             0.000045
+heldout_reward                                  1.903175               1.8464              1.85817
+heldout_reward_effective                        1.818326              1.74943             1.736958
+heldout_kl_token                               -0.000004             0.000002             0.000006
+heldout_kl_seq                                 -0.001096             0.000748             0.001908
+heldout_entropy                                 0.972332             0.990054              0.98507
+heldout_len_mean                              304.593939           311.860606           311.957576
+heldout_len_std                               258.550483           265.268316           267.909758
+heldout_len_iqr                                    454.0                472.0                471.0
+heldout_truncation_rate                         0.084848              0.09697             0.121212
+stab_mean_post_update_kl                        0.000312             0.000029             -0.00024
+stab_max_post_update_kl                         0.003585             0.000986             0.001025
+stab_max_abs_log_ratio                           0.03047             0.042007              0.03941
+stab_policy_loss_std                            0.000745             0.000277             0.000467
+stab_grad_norm_max                               2.99426             2.939016             2.932232
+train_clip_fraction_mean                             0.0                  0.0                  0.0
+train_clip_fraction_last_epoch_mean                  0.0                  0.0                  0.0
+train_reward_mean                               0.445114             0.819382             0.847946
+train_kl_token_last                             0.000162            -0.000271            -0.000214
+train_generated_tokens                            1971.0               1971.0               1993.0
+[run] python -m task2_ppo.ablate_kl --config configs/ppo.yaml
+KL beta conditions: [0.0, 0.1, 0.2]
+Fork update budget: 8
+[skip] task2_ppo.evaluate --config configs/ppo.yaml --adapter checkpoints/ppo_midpoint_policy --name midpoint  (found results/task2_ppo/heldout_midpoint.json)
+[skip] task2_ppo.continue_train --config configs/ppo.yaml --output outputs/task2_ppo/fork_eps0.20_kl0.00 --updates 8 --clip-epsilon 0.2 --kl-beta 0.0 --run-name fork_eps0.20_kl0.00  (found outputs/task2_ppo/fork_eps0.20_kl0.00/adapter_model.safetensors)
+[skip] task2_ppo.evaluate --config configs/ppo.yaml --adapter outputs/task2_ppo/fork_eps0.20_kl0.00 --name fork_eps0.20_kl0.00  (found results/task2_ppo/heldout_fork_eps0.20_kl0.00.json)
+[skip] task2_ppo.continue_train --config configs/ppo.yaml --output outputs/task2_ppo/fork_eps0.20_kl0.10 --updates 8 --clip-epsilon 0.2 --kl-beta 0.1 --run-name fork_eps0.20_kl0.10  (found outputs/task2_ppo/fork_eps0.20_kl0.10/adapter_model.safetensors)
+[skip] task2_ppo.evaluate --config configs/ppo.yaml --adapter outputs/task2_ppo/fork_eps0.20_kl0.10 --name fork_eps0.20_kl0.10  (found results/task2_ppo/heldout_fork_eps0.20_kl0.10.json)
+[skip] task2_ppo.continue_train --config configs/ppo.yaml --output outputs/task2_ppo/fork_eps0.20_kl0.20 --updates 8 --clip-epsilon 0.2 --kl-beta 0.2 --run-name fork_eps0.20_kl0.20  (found outputs/task2_ppo/fork_eps0.20_kl0.20/adapter_model.safetensors)
+[skip] task2_ppo.evaluate --config configs/ppo.yaml --adapter outputs/task2_ppo/fork_eps0.20_kl0.20 --name fork_eps0.20_kl0.20  (found results/task2_ppo/heldout_fork_eps0.20_kl0.20.json)
+                                                       0                    1                    2
+kl_beta                                              0.0                  0.1                  0.2
+fork                                 fork_eps0.20_kl0.00  fork_eps0.20_kl0.10  fork_eps0.20_kl0.20
+heldout_reward                                  1.908993               1.8464             1.825837
+heldout_reward_effective                        1.830205              1.74943             1.747049
+heldout_kl_token                                0.000043             0.000002                 -0.0
+heldout_kl_seq                                  0.013317             0.000748            -0.000025
+heldout_entropy                                 0.981846             0.990054             0.971737
+heldout_len_mean                              308.563636           311.860606           312.054545
+heldout_len_std                               263.663826           265.268316           265.359978
+heldout_len_iqr                                    455.0                472.0                475.0
+heldout_truncation_rate                         0.078788              0.09697             0.078788
+stab_mean_post_update_kl                        0.000305             0.000029            -0.000058
+stab_max_post_update_kl                         0.000769             0.000986             0.001557
+stab_max_abs_log_ratio                          0.037193             0.042007             0.039406
+stab_policy_loss_std                            0.000269             0.000277             0.000284
+stab_grad_norm_max                               2.94655             2.939016             2.946351
+train_clip_fraction_mean                             0.0                  0.0                  0.0
+train_clip_fraction_last_epoch_mean                  0.0                  0.0                  0.0
+train_reward_mean                               0.686234             0.819382             1.284622
+train_kl_token_last                              0.00057            -0.000271             0.000144
+train_generated_tokens                            2014.0               1971.0               1947.0

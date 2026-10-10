@@ -1,0 +1,212 @@
+[skip] task1_dpo.train --config configs/dpo.yaml --run-name standard  (found outputs/task1_dpo/standard/adapter_model.safetensors)
+[skip] task1_dpo.evaluate --config configs/dpo.yaml --adapter none --name sft  (found results/task1_dpo/eval_sft.json)
+[skip] task1_dpo.evaluate --config configs/dpo.yaml --adapter outputs/task1_dpo/standard --name standard  (found results/task1_dpo/eval_standard.json)
+[run] python -m task1_dpo.ablate_beta --config configs/dpo.yaml
+Required beta values: [0.03, 0.1, 0.3]
+Short-run examples per condition: 600
+[skip] task1_dpo.train --config configs/dpo.yaml --run-name beta_0.03 --output outputs/task1_dpo/beta_0.03 --beta 0.03 --max-examples 600  (found outputs/task1_dpo/beta_0.03/adapter_model.safetensors)
+[skip] task1_dpo.evaluate --config configs/dpo.yaml --adapter outputs/task1_dpo/beta_0.03 --name beta_0.03 --beta 0.03  (found results/task1_dpo/eval_beta_0.03.json)
+[skip] task1_dpo.train --config configs/dpo.yaml --run-name beta_0.10 --output outputs/task1_dpo/beta_0.10 --beta 0.1 --max-examples 600  (found outputs/task1_dpo/beta_0.10/adapter_model.safetensors)
+[skip] task1_dpo.evaluate --config configs/dpo.yaml --adapter outputs/task1_dpo/beta_0.10 --name beta_0.10 --beta 0.1  (found results/task1_dpo/eval_beta_0.10.json)
+[skip] task1_dpo.train --config configs/dpo.yaml --run-name beta_0.30 --output outputs/task1_dpo/beta_0.30 --beta 0.3 --max-examples 600  (found outputs/task1_dpo/beta_0.30/adapter_model.safetensors)
+[skip] task1_dpo.evaluate --config configs/dpo.yaml --adapter outputs/task1_dpo/beta_0.30 --name beta_0.30 --beta 0.3  (found results/task1_dpo/eval_beta_0.30.json)
+condition                     budget  beta  heldout_dpo_loss_own_beta  heldout_dpo_loss_beta0.10  heldout_pref_acc  heldout_margin_mean  kl_token_mean  kl_seq_mean  rm_score_mean  rm_score_std   len_mean    len_std  len_iqr  truncation_rate  entropy  word_limit_compliance
+      sft    none (reference policy)  0.10                   0.693147                   0.693147          0.000000             0.000000       0.000000     0.000000       1.461253      1.243777 144.831169 106.248610    222.5         0.380952 0.937083                   0.56
+ standard         1 epoch, all pairs  0.10                   0.679714                   0.679714          0.629167             0.294346       0.000104     0.014942       1.486488      1.198120 143.536797 105.123022    222.5         0.389610 0.956952                   0.58
+beta_0.03 short run, first 600 pairs  0.03                   0.691208                   0.686872          0.629167             0.130898      -0.000203    -0.029160       1.448475      1.218398 143.385281 105.324317    222.5         0.359307 0.946812                   0.56
+beta_0.10 short run, first 600 pairs  0.10                   0.687158                   0.687158          0.608333             0.124856      -0.000185    -0.026574       1.487598      1.208310 143.303030 105.830972    223.5         0.376623 0.939788                   0.56
+beta_0.30 short run, first 600 pairs  0.30                   0.678352                   0.687754          0.608333             0.112485      -0.000183    -0.026135       1.455763      1.238249 142.792208 105.762285    223.5         0.367965 0.935868                   0.54
+[run] python -m task1_dpo.analyze_length --config configs/dpo.yaml
+Length-balanced train rows: 1500
+Length-stratified eval rows: 246
+[skip] task1_dpo.train --config configs/dpo.yaml --run-name length_balanced --dataset data/dpo_length_balanced_train.jsonl --output outputs/task1_dpo/length_balanced  (found outputs/task1_dpo/length_balanced/adapter_model.safetensors)
+[skip] task1_dpo.evaluate --config configs/dpo.yaml --adapter outputs/task1_dpo/length_balanced --name length_balanced  (found results/task1_dpo/eval_length_balanced.json)
+[skip] task1_dpo.evaluate --config configs/dpo.yaml --adapter outputs/task1_dpo/standard --name standard  (found results/task1_dpo/eval_standard.json)
+                              dataset  n_pairs  chosen_tokens_mean  rejected_tokens_mean  frac_chosen_longer  frac_rejected_longer  mean_len_diff_chosen_minus_rejected  median_len_diff  frac_relative_diff_gt_20pct_chosen_longer  frac_relative_diff_gt_20pct_rejected_longer  spearman_len_diff_vs_score_diff  n_dropped_overlength
+                 standard_train (all)     1500          282.114667            239.664667            0.562667              0.422000                            42.450000             18.0                                   0.442667                                     0.301333                         0.078160                   NaN
+        standard_train (after filter)     1214          227.023064            188.098023            0.565898              0.416804                            38.925041             16.0                                   0.452224                                     0.300659                         0.086003                 286.0
+          length_balanced_train (all)     1500          156.855333            151.692000            0.491333              0.486000                             5.163333              0.0                                   0.318000                                     0.320000                         0.053506                   NaN
+ length_balanced_train (after filter)     1400          155.471429            150.287857            0.490714              0.487143                             5.183571              0.0                                   0.314286                                     0.319286                         0.065973                 100.0
+                  standard_eval (all)      300          274.403333            243.756667            0.533333              0.443333                            30.646667              5.0                                   0.396667                                     0.333333                         0.142510                   NaN
+         standard_eval (after filter)      240          206.145833            186.587500            0.529167              0.445833                            19.558333              3.5                                   0.400000                                     0.345833                         0.096003                  60.0
+         length_stratified_eval (all)      246          147.455285            144.760163            0.483740              0.500000                             2.695122             -0.5                                   0.313008                                     0.321138                         0.045871                   NaN
+length_stratified_eval (after filter)      230          146.760870            143.773913            0.478261              0.504348                             2.986957             -1.0                                   0.304348                                     0.317391                         0.073568                  16.0
+      condition  acc_preferred_longer  margin_preferred_longer  acc_length_matched  margin_length_matched  acc_rejected_longer  margin_rejected_longer  acc_all_strata  acc_standard_heldout  gen_len_mean  gen_len_std  gen_len_iqr  rm_score_mean  word_limit_compliance  word_limit_words_mean  word_limit_words_std
+            sft              0.000000                 0.000000              0.0000               0.000000             0.000000                0.000000        0.000000              0.000000    144.831169   106.248610        222.5       1.461253                   0.56                  40.18             20.649346
+       standard              0.445946                -0.061163              0.5625               0.125657             0.684211                0.454793        0.565217              0.629167    143.536797   105.123022        222.5       1.486488                   0.58                  38.34             17.586648
+length_balanced              0.391892                -0.502970              0.6125               0.314157             0.750000                1.327959        0.586957              0.604167    143.809524   105.768073        222.5       1.484096                   0.62                  37.80             17.025791
+      beta_0.03              0.486486                -0.034791              0.5875               0.058888             0.697368                0.199673        0.591304              0.629167    143.385281   105.324317        222.5       1.448475                   0.56                  40.08             21.001302
+      beta_0.10              0.472973                -0.020395              0.5875               0.046997             0.697368                0.184250        0.586957              0.608333    143.303030   105.830972        223.5       1.487598                   0.56                  40.02             21.005820
+      beta_0.30              0.486486                -0.028847              0.5500               0.057777             0.710526                0.168768        0.582609              0.608333    142.792208   105.762285        223.5       1.455763                   0.54                  39.56             20.133392
+                    words                     compliance              
+condition length_balanced   sft standard length_balanced  sft standard
+prompt_id                                                             
+wl01                 31.4  33.2     31.4             1.0  1.0      1.0
+wl02                 26.8  27.6     27.6             0.4  0.2      0.2
+wl03                 24.4  24.2     23.2             1.0  1.0      1.0
+wl04                 38.6  42.0     42.0             0.4  0.2      0.2
+wl05                 52.8  61.6     56.8             0.6  0.4      0.6
+wl06                 27.0  27.0     27.6             0.8  0.6      0.6
+wl07                 49.4  53.6     54.0             0.2  0.2      0.2
+wl08                 33.2  32.0     31.4             0.8  1.0      1.0
+wl09                 25.2  26.4     25.2             1.0  1.0      1.0
+wl10                 69.2  74.2     64.2             0.0  0.0      0.0
+[skip] task1_dpo.train --config configs/dpo.yaml --run-name standard  (found outputs/task1_dpo/standard/adapter_model.safetensors)
+[skip] task1_dpo.evaluate --config configs/dpo.yaml --adapter none --name sft  (found results/task1_dpo/eval_sft.json)
+[skip] task1_dpo.evaluate --config configs/dpo.yaml --adapter outputs/task1_dpo/standard --name standard  (found results/task1_dpo/eval_standard.json)
+[run] python -m task1_dpo.ablate_beta --config configs/dpo.yaml
+Required beta values: [0.03, 0.1, 0.3]
+Short-run examples per condition: 600
+[skip] task1_dpo.train --config configs/dpo.yaml --run-name beta_0.03 --output outputs/task1_dpo/beta_0.03 --beta 0.03 --max-examples 600  (found outputs/task1_dpo/beta_0.03/adapter_model.safetensors)
+[skip] task1_dpo.evaluate --config configs/dpo.yaml --adapter outputs/task1_dpo/beta_0.03 --name beta_0.03 --beta 0.03  (found results/task1_dpo/eval_beta_0.03.json)
+[skip] task1_dpo.train --config configs/dpo.yaml --run-name beta_0.10 --output outputs/task1_dpo/beta_0.10 --beta 0.1 --max-examples 600  (found outputs/task1_dpo/beta_0.10/adapter_model.safetensors)
+[skip] task1_dpo.evaluate --config configs/dpo.yaml --adapter outputs/task1_dpo/beta_0.10 --name beta_0.10 --beta 0.1  (found results/task1_dpo/eval_beta_0.10.json)
+[skip] task1_dpo.train --config configs/dpo.yaml --run-name beta_0.30 --output outputs/task1_dpo/beta_0.30 --beta 0.3 --max-examples 600  (found outputs/task1_dpo/beta_0.30/adapter_model.safetensors)
+[skip] task1_dpo.evaluate --config configs/dpo.yaml --adapter outputs/task1_dpo/beta_0.30 --name beta_0.30 --beta 0.3  (found results/task1_dpo/eval_beta_0.30.json)
+condition                     budget  beta  heldout_dpo_loss_own_beta  heldout_dpo_loss_beta0.10  heldout_pref_acc  heldout_margin_mean  kl_token_mean  kl_seq_mean  rm_score_mean  rm_score_std   len_mean    len_std  len_iqr  truncation_rate  entropy  word_limit_compliance
+      sft    none (reference policy)  0.10                   0.693147                   0.693147          0.000000             0.000000       0.000000     0.000000       1.461253      1.243777 144.831169 106.248610    222.5         0.380952 0.937083                   0.56
+ standard         1 epoch, all pairs  0.10                   0.679714                   0.679714          0.629167             0.294346       0.000104     0.014942       1.486488      1.198120 143.536797 105.123022    222.5         0.389610 0.956952                   0.58
+beta_0.03 short run, first 600 pairs  0.03                   0.691208                   0.686872          0.629167             0.130898      -0.000203    -0.029160       1.448475      1.218398 143.385281 105.324317    222.5         0.359307 0.946812                   0.56
+beta_0.10 short run, first 600 pairs  0.10                   0.687158                   0.687158          0.608333             0.124856      -0.000185    -0.026574       1.487598      1.208310 143.303030 105.830972    223.5         0.376623 0.939788                   0.56
+beta_0.30 short run, first 600 pairs  0.30                   0.678352                   0.687754          0.608333             0.112485      -0.000183    -0.026135       1.455763      1.238249 142.792208 105.762285    223.5         0.367965 0.935868                   0.54
+[run] python -m task1_dpo.analyze_length --config configs/dpo.yaml
+Length-balanced train rows: 1500
+Length-stratified eval rows: 246
+[skip] task1_dpo.train --config configs/dpo.yaml --run-name length_balanced --dataset data/dpo_length_balanced_train.jsonl --output outputs/task1_dpo/length_balanced  (found outputs/task1_dpo/length_balanced/adapter_model.safetensors)
+[skip] task1_dpo.evaluate --config configs/dpo.yaml --adapter outputs/task1_dpo/length_balanced --name length_balanced  (found results/task1_dpo/eval_length_balanced.json)
+[skip] task1_dpo.evaluate --config configs/dpo.yaml --adapter outputs/task1_dpo/standard --name standard  (found results/task1_dpo/eval_standard.json)
+                              dataset  n_pairs  chosen_tokens_mean  rejected_tokens_mean  frac_chosen_longer  frac_rejected_longer  mean_len_diff_chosen_minus_rejected  median_len_diff  frac_relative_diff_gt_20pct_chosen_longer  frac_relative_diff_gt_20pct_rejected_longer  spearman_len_diff_vs_score_diff  n_dropped_overlength
+                 standard_train (all)     1500          282.114667            239.664667            0.562667              0.422000                            42.450000             18.0                                   0.442667                                     0.301333                         0.078160                   NaN
+        standard_train (after filter)     1214          227.023064            188.098023            0.565898              0.416804                            38.925041             16.0                                   0.452224                                     0.300659                         0.086003                 286.0
+          length_balanced_train (all)     1500          156.855333            151.692000            0.491333              0.486000                             5.163333              0.0                                   0.318000                                     0.320000                         0.053506                   NaN
+ length_balanced_train (after filter)     1400          155.471429            150.287857            0.490714              0.487143                             5.183571              0.0                                   0.314286                                     0.319286                         0.065973                 100.0
+                  standard_eval (all)      300          274.403333            243.756667            0.533333              0.443333                            30.646667              5.0                                   0.396667                                     0.333333                         0.142510                   NaN
+         standard_eval (after filter)      240          206.145833            186.587500            0.529167              0.445833                            19.558333              3.5                                   0.400000                                     0.345833                         0.096003                  60.0
+         length_stratified_eval (all)      246          147.455285            144.760163            0.483740              0.500000                             2.695122             -0.5                                   0.313008                                     0.321138                         0.045871                   NaN
+length_stratified_eval (after filter)      230          146.760870            143.773913            0.478261              0.504348                             2.986957             -1.0                                   0.304348                                     0.317391                         0.073568                  16.0
+      condition  acc_preferred_longer  margin_preferred_longer  acc_length_matched  margin_length_matched  acc_rejected_longer  margin_rejected_longer  acc_all_strata  acc_standard_heldout  gen_len_mean  gen_len_std  gen_len_iqr  rm_score_mean  word_limit_compliance  word_limit_words_mean  word_limit_words_std
+            sft              0.000000                 0.000000              0.0000               0.000000             0.000000                0.000000        0.000000              0.000000    144.831169   106.248610        222.5       1.461253                   0.56                  40.18             20.649346
+       standard              0.445946                -0.061163              0.5625               0.125657             0.684211                0.454793        0.565217              0.629167    143.536797   105.123022        222.5       1.486488                   0.58                  38.34             17.586648
+length_balanced              0.391892                -0.502970              0.6125               0.314157             0.750000                1.327959        0.586957              0.604167    143.809524   105.768073        222.5       1.484096                   0.62                  37.80             17.025791
+      beta_0.03              0.486486                -0.034791              0.5875               0.058888             0.697368                0.199673        0.591304              0.629167    143.385281   105.324317        222.5       1.448475                   0.56                  40.08             21.001302
+      beta_0.10              0.472973                -0.020395              0.5875               0.046997             0.697368                0.184250        0.586957              0.608333    143.303030   105.830972        223.5       1.487598                   0.56                  40.02             21.005820
+      beta_0.30              0.486486                -0.028847              0.5500               0.057777             0.710526                0.168768        0.582609              0.608333    142.792208   105.762285        223.5       1.455763                   0.54                  39.56             20.133392
+                    words                     compliance              
+condition length_balanced   sft standard length_balanced  sft standard
+prompt_id                                                             
+wl01                 31.4  33.2     31.4             1.0  1.0      1.0
+wl02                 26.8  27.6     27.6             0.4  0.2      0.2
+wl03                 24.4  24.2     23.2             1.0  1.0      1.0
+wl04                 38.6  42.0     42.0             0.4  0.2      0.2
+wl05                 52.8  61.6     56.8             0.6  0.4      0.6
+wl06                 27.0  27.0     27.6             0.8  0.6      0.6
+wl07                 49.4  53.6     54.0             0.2  0.2      0.2
+wl08                 33.2  32.0     31.4             0.8  1.0      1.0
+wl09                 25.2  26.4     25.2             1.0  1.0      1.0
+wl10                 69.2  74.2     64.2             0.0  0.0      0.0
+[skip] task1_dpo.train --config configs/dpo.yaml --run-name standard  (found outputs/task1_dpo/standard/adapter_model.safetensors)
+[skip] task1_dpo.evaluate --config configs/dpo.yaml --adapter none --name sft  (found results/task1_dpo/eval_sft.json)
+[skip] task1_dpo.evaluate --config configs/dpo.yaml --adapter outputs/task1_dpo/standard --name standard  (found results/task1_dpo/eval_standard.json)
+[run] python -m task1_dpo.ablate_beta --config configs/dpo.yaml
+Required beta values: [0.03, 0.1, 0.3]
+Short-run examples per condition: 600
+[skip] task1_dpo.train --config configs/dpo.yaml --run-name beta_0.03 --output outputs/task1_dpo/beta_0.03 --beta 0.03 --max-examples 600  (found outputs/task1_dpo/beta_0.03/adapter_model.safetensors)
+[skip] task1_dpo.evaluate --config configs/dpo.yaml --adapter outputs/task1_dpo/beta_0.03 --name beta_0.03 --beta 0.03  (found results/task1_dpo/eval_beta_0.03.json)
+[skip] task1_dpo.train --config configs/dpo.yaml --run-name beta_0.10 --output outputs/task1_dpo/beta_0.10 --beta 0.1 --max-examples 600  (found outputs/task1_dpo/beta_0.10/adapter_model.safetensors)
+[skip] task1_dpo.evaluate --config configs/dpo.yaml --adapter outputs/task1_dpo/beta_0.10 --name beta_0.10 --beta 0.1  (found results/task1_dpo/eval_beta_0.10.json)
+[skip] task1_dpo.train --config configs/dpo.yaml --run-name beta_0.30 --output outputs/task1_dpo/beta_0.30 --beta 0.3 --max-examples 600  (found outputs/task1_dpo/beta_0.30/adapter_model.safetensors)
+[skip] task1_dpo.evaluate --config configs/dpo.yaml --adapter outputs/task1_dpo/beta_0.30 --name beta_0.30 --beta 0.3  (found results/task1_dpo/eval_beta_0.30.json)
+condition                     budget  beta  heldout_dpo_loss_own_beta  heldout_dpo_loss_beta0.10  heldout_pref_acc  heldout_margin_mean  kl_token_mean  kl_seq_mean  rm_score_mean  rm_score_std   len_mean    len_std  len_iqr  truncation_rate  entropy  word_limit_compliance
+      sft    none (reference policy)  0.10                   0.693147                   0.693147          0.000000             0.000000       0.000000     0.000000       1.461253      1.243777 144.831169 106.248610    222.5         0.380952 0.937083                   0.56
+ standard         1 epoch, all pairs  0.10                   0.679714                   0.679714          0.629167             0.294346       0.000104     0.014942       1.486488      1.198120 143.536797 105.123022    222.5         0.389610 0.956952                   0.58
+beta_0.03 short run, first 600 pairs  0.03                   0.691208                   0.686872          0.629167             0.130898      -0.000203    -0.029160       1.448475      1.218398 143.385281 105.324317    222.5         0.359307 0.946812                   0.56
+beta_0.10 short run, first 600 pairs  0.10                   0.687158                   0.687158          0.608333             0.124856      -0.000185    -0.026574       1.487598      1.208310 143.303030 105.830972    223.5         0.376623 0.939788                   0.56
+beta_0.30 short run, first 600 pairs  0.30                   0.678352                   0.687754          0.608333             0.112485      -0.000183    -0.026135       1.455763      1.238249 142.792208 105.762285    223.5         0.367965 0.935868                   0.54
+[run] python -m task1_dpo.analyze_length --config configs/dpo.yaml
+Length-balanced train rows: 1500
+Length-stratified eval rows: 246
+[skip] task1_dpo.train --config configs/dpo.yaml --run-name length_balanced --dataset data/dpo_length_balanced_train.jsonl --output outputs/task1_dpo/length_balanced  (found outputs/task1_dpo/length_balanced/adapter_model.safetensors)
+[skip] task1_dpo.evaluate --config configs/dpo.yaml --adapter outputs/task1_dpo/length_balanced --name length_balanced  (found results/task1_dpo/eval_length_balanced.json)
+[skip] task1_dpo.evaluate --config configs/dpo.yaml --adapter outputs/task1_dpo/standard --name standard  (found results/task1_dpo/eval_standard.json)
+                              dataset  n_pairs  chosen_tokens_mean  rejected_tokens_mean  frac_chosen_longer  frac_rejected_longer  mean_len_diff_chosen_minus_rejected  median_len_diff  frac_relative_diff_gt_20pct_chosen_longer  frac_relative_diff_gt_20pct_rejected_longer  spearman_len_diff_vs_score_diff  n_dropped_overlength
+                 standard_train (all)     1500          282.114667            239.664667            0.562667              0.422000                            42.450000             18.0                                   0.442667                                     0.301333                         0.078160                   NaN
+        standard_train (after filter)     1214          227.023064            188.098023            0.565898              0.416804                            38.925041             16.0                                   0.452224                                     0.300659                         0.086003                 286.0
+          length_balanced_train (all)     1500          156.855333            151.692000            0.491333              0.486000                             5.163333              0.0                                   0.318000                                     0.320000                         0.053506                   NaN
+ length_balanced_train (after filter)     1400          155.471429            150.287857            0.490714              0.487143                             5.183571              0.0                                   0.314286                                     0.319286                         0.065973                 100.0
+                  standard_eval (all)      300          274.403333            243.756667            0.533333              0.443333                            30.646667              5.0                                   0.396667                                     0.333333                         0.142510                   NaN
+         standard_eval (after filter)      240          206.145833            186.587500            0.529167              0.445833                            19.558333              3.5                                   0.400000                                     0.345833                         0.096003                  60.0
+         length_stratified_eval (all)      246          147.455285            144.760163            0.483740              0.500000                             2.695122             -0.5                                   0.313008                                     0.321138                         0.045871                   NaN
+length_stratified_eval (after filter)      230          146.760870            143.773913            0.478261              0.504348                             2.986957             -1.0                                   0.304348                                     0.317391                         0.073568                  16.0
+      condition  acc_preferred_longer  margin_preferred_longer  acc_length_matched  margin_length_matched  acc_rejected_longer  margin_rejected_longer  acc_all_strata  acc_standard_heldout  gen_len_mean  gen_len_std  gen_len_iqr  rm_score_mean  word_limit_compliance  word_limit_words_mean  word_limit_words_std
+            sft              0.000000                 0.000000              0.0000               0.000000             0.000000                0.000000        0.000000              0.000000    144.831169   106.248610        222.5       1.461253                   0.56                  40.18             20.649346
+       standard              0.445946                -0.061163              0.5625               0.125657             0.684211                0.454793        0.565217              0.629167    143.536797   105.123022        222.5       1.486488                   0.58                  38.34             17.586648
+length_balanced              0.391892                -0.502970              0.6125               0.314157             0.750000                1.327959        0.586957              0.604167    143.809524   105.768073        222.5       1.484096                   0.62                  37.80             17.025791
+      beta_0.03              0.486486                -0.034791              0.5875               0.058888             0.697368                0.199673        0.591304              0.629167    143.385281   105.324317        222.5       1.448475                   0.56                  40.08             21.001302
+      beta_0.10              0.472973                -0.020395              0.5875               0.046997             0.697368                0.184250        0.586957              0.608333    143.303030   105.830972        223.5       1.487598                   0.56                  40.02             21.005820
+      beta_0.30              0.486486                -0.028847              0.5500               0.057777             0.710526                0.168768        0.582609              0.608333    142.792208   105.762285        223.5       1.455763                   0.54                  39.56             20.133392
+                    words                     compliance              
+condition length_balanced   sft standard length_balanced  sft standard
+prompt_id                                                             
+wl01                 31.4  33.2     31.4             1.0  1.0      1.0
+wl02                 26.8  27.6     27.6             0.4  0.2      0.2
+wl03                 24.4  24.2     23.2             1.0  1.0      1.0
+wl04                 38.6  42.0     42.0             0.4  0.2      0.2
+wl05                 52.8  61.6     56.8             0.6  0.4      0.6
+wl06                 27.0  27.0     27.6             0.8  0.6      0.6
+wl07                 49.4  53.6     54.0             0.2  0.2      0.2
+wl08                 33.2  32.0     31.4             0.8  1.0      1.0
+wl09                 25.2  26.4     25.2             1.0  1.0      1.0
+wl10                 69.2  74.2     64.2             0.0  0.0      0.0
+[skip] task1_dpo.train --config configs/dpo.yaml --run-name standard  (found outputs/task1_dpo/standard/adapter_model.safetensors)
+[skip] task1_dpo.evaluate --config configs/dpo.yaml --adapter none --name sft  (found results/task1_dpo/eval_sft.json)
+[skip] task1_dpo.evaluate --config configs/dpo.yaml --adapter outputs/task1_dpo/standard --name standard  (found results/task1_dpo/eval_standard.json)
+[run] python -m task1_dpo.ablate_beta --config configs/dpo.yaml
+Required beta values: [0.03, 0.1, 0.3]
+Short-run examples per condition: 600
+[skip] task1_dpo.train --config configs/dpo.yaml --run-name beta_0.03 --output outputs/task1_dpo/beta_0.03 --beta 0.03 --max-examples 600  (found outputs/task1_dpo/beta_0.03/adapter_model.safetensors)
+[skip] task1_dpo.evaluate --config configs/dpo.yaml --adapter outputs/task1_dpo/beta_0.03 --name beta_0.03 --beta 0.03  (found results/task1_dpo/eval_beta_0.03.json)
+[skip] task1_dpo.train --config configs/dpo.yaml --run-name beta_0.10 --output outputs/task1_dpo/beta_0.10 --beta 0.1 --max-examples 600  (found outputs/task1_dpo/beta_0.10/adapter_model.safetensors)
+[skip] task1_dpo.evaluate --config configs/dpo.yaml --adapter outputs/task1_dpo/beta_0.10 --name beta_0.10 --beta 0.1  (found results/task1_dpo/eval_beta_0.10.json)
+[skip] task1_dpo.train --config configs/dpo.yaml --run-name beta_0.30 --output outputs/task1_dpo/beta_0.30 --beta 0.3 --max-examples 600  (found outputs/task1_dpo/beta_0.30/adapter_model.safetensors)
+[skip] task1_dpo.evaluate --config configs/dpo.yaml --adapter outputs/task1_dpo/beta_0.30 --name beta_0.30 --beta 0.3  (found results/task1_dpo/eval_beta_0.30.json)
+condition                     budget  beta  heldout_dpo_loss_own_beta  heldout_dpo_loss_beta0.10  heldout_pref_acc  heldout_margin_mean  kl_token_mean  kl_seq_mean  rm_score_mean  rm_score_std   len_mean    len_std  len_iqr  truncation_rate  entropy  word_limit_compliance
+      sft    none (reference policy)  0.10                   0.693147                   0.693147          0.000000             0.000000       0.000000     0.000000       1.461253      1.243777 144.831169 106.248610    222.5         0.380952 0.937083                   0.56
+ standard         1 epoch, all pairs  0.10                   0.679714                   0.679714          0.629167             0.294346       0.000104     0.014942       1.486488      1.198120 143.536797 105.123022    222.5         0.389610 0.956952                   0.58
+beta_0.03 short run, first 600 pairs  0.03                   0.691208                   0.686872          0.629167             0.130898      -0.000203    -0.029160       1.448475      1.218398 143.385281 105.324317    222.5         0.359307 0.946812                   0.56
+beta_0.10 short run, first 600 pairs  0.10                   0.687158                   0.687158          0.608333             0.124856      -0.000185    -0.026574       1.487598      1.208310 143.303030 105.830972    223.5         0.376623 0.939788                   0.56
+beta_0.30 short run, first 600 pairs  0.30                   0.678352                   0.687754          0.608333             0.112485      -0.000183    -0.026135       1.455763      1.238249 142.792208 105.762285    223.5         0.367965 0.935868                   0.54
+[run] python -m task1_dpo.analyze_length --config configs/dpo.yaml
+Length-balanced train rows: 1500
+Length-stratified eval rows: 246
+[skip] task1_dpo.train --config configs/dpo.yaml --run-name length_balanced --dataset data/dpo_length_balanced_train.jsonl --output outputs/task1_dpo/length_balanced  (found outputs/task1_dpo/length_balanced/adapter_model.safetensors)
+[skip] task1_dpo.evaluate --config configs/dpo.yaml --adapter outputs/task1_dpo/length_balanced --name length_balanced  (found results/task1_dpo/eval_length_balanced.json)
+[skip] task1_dpo.evaluate --config configs/dpo.yaml --adapter outputs/task1_dpo/standard --name standard  (found results/task1_dpo/eval_standard.json)
+                              dataset  n_pairs  chosen_tokens_mean  rejected_tokens_mean  frac_chosen_longer  frac_rejected_longer  mean_len_diff_chosen_minus_rejected  median_len_diff  frac_relative_diff_gt_20pct_chosen_longer  frac_relative_diff_gt_20pct_rejected_longer  spearman_len_diff_vs_score_diff  n_dropped_overlength
+                 standard_train (all)     1500          282.114667            239.664667            0.562667              0.422000                            42.450000             18.0                                   0.442667                                     0.301333                         0.078160                   NaN
+        standard_train (after filter)     1214          227.023064            188.098023            0.565898              0.416804                            38.925041             16.0                                   0.452224                                     0.300659                         0.086003                 286.0
+          length_balanced_train (all)     1500          156.855333            151.692000            0.491333              0.486000                             5.163333              0.0                                   0.318000                                     0.320000                         0.053506                   NaN
+ length_balanced_train (after filter)     1400          155.471429            150.287857            0.490714              0.487143                             5.183571              0.0                                   0.314286                                     0.319286                         0.065973                 100.0
+                  standard_eval (all)      300          274.403333            243.756667            0.533333              0.443333                            30.646667              5.0                                   0.396667                                     0.333333                         0.142510                   NaN
+         standard_eval (after filter)      240          206.145833            186.587500            0.529167              0.445833                            19.558333              3.5                                   0.400000                                     0.345833                         0.096003                  60.0
+         length_stratified_eval (all)      246          147.455285            144.760163            0.483740              0.500000                             2.695122             -0.5                                   0.313008                                     0.321138                         0.045871                   NaN
+length_stratified_eval (after filter)      230          146.760870            143.773913            0.478261              0.504348                             2.986957             -1.0                                   0.304348                                     0.317391                         0.073568                  16.0
+      condition  acc_preferred_longer  margin_preferred_longer  acc_length_matched  margin_length_matched  acc_rejected_longer  margin_rejected_longer  acc_all_strata  acc_standard_heldout  gen_len_mean  gen_len_std  gen_len_iqr  rm_score_mean  word_limit_compliance  word_limit_words_mean  word_limit_words_std
+            sft              0.000000                 0.000000              0.0000               0.000000             0.000000                0.000000        0.000000              0.000000    144.831169   106.248610        222.5       1.461253                   0.56                  40.18             20.649346
+       standard              0.445946                -0.061163              0.5625               0.125657             0.684211                0.454793        0.565217              0.629167    143.536797   105.123022        222.5       1.486488                   0.58                  38.34             17.586648
+length_balanced              0.391892                -0.502970              0.6125               0.314157             0.750000                1.327959        0.586957              0.604167    143.809524   105.768073        222.5       1.484096                   0.62                  37.80             17.025791
+      beta_0.03              0.486486                -0.034791              0.5875               0.058888             0.697368                0.199673        0.591304              0.629167    143.385281   105.324317        222.5       1.448475                   0.56                  40.08             21.001302
+      beta_0.10              0.472973                -0.020395              0.5875               0.046997             0.697368                0.184250        0.586957              0.608333    143.303030   105.830972        223.5       1.487598                   0.56                  40.02             21.005820
+      beta_0.30              0.486486                -0.028847              0.5500               0.057777             0.710526                0.168768        0.582609              0.608333    142.792208   105.762285        223.5       1.455763                   0.54                  39.56             20.133392
+                    words                     compliance              
+condition length_balanced   sft standard length_balanced  sft standard
+prompt_id                                                             
+wl01                 31.4  33.2     31.4             1.0  1.0      1.0
+wl02                 26.8  27.6     27.6             0.4  0.2      0.2
+wl03                 24.4  24.2     23.2             1.0  1.0      1.0
+wl04                 38.6  42.0     42.0             0.4  0.2      0.2
+wl05                 52.8  61.6     56.8             0.6  0.4      0.6
+wl06                 27.0  27.0     27.6             0.8  0.6      0.6
+wl07                 49.4  53.6     54.0             0.2  0.2      0.2
+wl08                 33.2  32.0     31.4             0.8  1.0      1.0
+wl09                 25.2  26.4     25.2             1.0  1.0      1.0
+wl10                 69.2  74.2     64.2             0.0  0.0      0.0

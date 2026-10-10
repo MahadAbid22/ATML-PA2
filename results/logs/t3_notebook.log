@@ -1,0 +1,84 @@
+[skip] task3_grpo.continue_train --config configs/grpo.yaml --run-name standard  (found outputs/task3_grpo/standard/adapter_model.safetensors)
+[skip] task3_grpo.evaluate --config configs/grpo.yaml --adapter outputs/task3_grpo/standard --name standard  (found results/task3_grpo/heldout_standard.json)
+[skip] task3_grpo.evaluate --config configs/grpo.yaml --adapter checkpoints/grpo_midpoint_policy --name midpoint  (found results/task3_grpo/heldout_midpoint.json)
+[skip] task3_grpo.analyze_group_size --config configs/grpo.yaml  (found results/task3_grpo/group_size_table.csv)
+[run] python -m task3_grpo.compare_normalization --config configs/grpo.yaml
+Fork updates: 8
+Compare loss_type='grpo' vs loss_type='dr_grpo' from the identical supplied midpoint.
+[skip] task3_grpo.evaluate --config configs/grpo.yaml --adapter checkpoints/grpo_midpoint_policy --name midpoint  (found results/task3_grpo/heldout_midpoint.json)
+[skip] task3_grpo.continue_train --config configs/grpo.yaml --output outputs/task3_grpo/fork_grpo --updates 8 --loss-type grpo --run-name fork_grpo  (found outputs/task3_grpo/fork_grpo/adapter_model.safetensors)
+[skip] task3_grpo.evaluate --config configs/grpo.yaml --adapter outputs/task3_grpo/fork_grpo --name fork_grpo  (found results/task3_grpo/heldout_fork_grpo.json)
+[skip] task3_grpo.continue_train --config configs/grpo.yaml --output outputs/task3_grpo/fork_dr_grpo --updates 8 --loss-type dr_grpo --run-name fork_dr_grpo  (found outputs/task3_grpo/fork_dr_grpo/adapter_model.safetensors)
+[skip] task3_grpo.evaluate --config configs/grpo.yaml --adapter outputs/task3_grpo/fork_dr_grpo --name fork_dr_grpo  (found results/task3_grpo/heldout_fork_dr_grpo.json)
+                                           0             1                     2
+loss_type                               grpo       dr_grpo  midpoint (no update)
+fork                               fork_grpo  fork_dr_grpo              midpoint
+heldout_reward                      1.855397      1.916239               1.89332
+heldout_kl_token                    0.000089      0.000078             -0.000002
+heldout_kl_seq                      0.027576      0.024189             -0.000579
+heldout_entropy                     0.983851      0.973063              0.969116
+heldout_len_mean                  308.733333    308.630303            305.448485
+heldout_len_std                   266.777704    261.336323            260.767147
+heldout_len_iqr                        447.0         452.0                 448.0
+heldout_truncation_rate             0.121212      0.084848              0.084848
+train_reward_mean                   1.437145      1.064573                   NaN
+train_len_mean                      240.5625        240.75                   NaN
+train_grad_norm_mean                0.512399       0.04432                   NaN
+train_generated_tokens                7698.0        7704.0                   NaN
+n_completions_in_loss                   23.0          21.0                   NaN
+median_length_split                     33.0          29.0                   NaN
+spearman_len_vs_gradnorm           -0.242304      0.457516                   NaN
+spearman_len_vs_grad_per_abs_adv   -0.853029      0.426144                   NaN
+gradnorm_short_mean                  0.39387       0.00951                   NaN
+gradnorm_long_mean                  0.126811      0.038778                   NaN
+gradnorm_long_over_short            0.321962      4.077854                   NaN
+grad_per_abs_adv_short            294.123114    209.825709                   NaN
+grad_per_abs_adv_long               0.129809      0.041854                   NaN
+token_weight_short_mean             0.012849      0.000267                   NaN
+token_weight_long_mean              0.001591      0.000416                   NaN
+sequence_weight_short_mean             0.142      0.003923                   NaN
+sequence_weight_long_mean           0.229789       0.08715                   NaN
+mean_length_pos_adv                    192.3    115.333333                   NaN
+mean_length_neg_adv               119.888889        118.25                   NaN
+[skip] task3_grpo.continue_train --config configs/grpo.yaml --run-name standard  (found outputs/task3_grpo/standard/adapter_model.safetensors)
+[skip] task3_grpo.evaluate --config configs/grpo.yaml --adapter outputs/task3_grpo/standard --name standard  (found results/task3_grpo/heldout_standard.json)
+[skip] task3_grpo.evaluate --config configs/grpo.yaml --adapter checkpoints/grpo_midpoint_policy --name midpoint  (found results/task3_grpo/heldout_midpoint.json)
+[skip] task3_grpo.analyze_group_size --config configs/grpo.yaml  (found results/task3_grpo/group_size_table.csv)
+[run] python -m task3_grpo.compare_normalization --config configs/grpo.yaml
+Fork updates: 8
+Compare loss_type='grpo' vs loss_type='dr_grpo' from the identical supplied midpoint.
+[skip] task3_grpo.evaluate --config configs/grpo.yaml --adapter checkpoints/grpo_midpoint_policy --name midpoint  (found results/task3_grpo/heldout_midpoint.json)
+[skip] task3_grpo.continue_train --config configs/grpo.yaml --output outputs/task3_grpo/fork_grpo --updates 8 --loss-type grpo --run-name fork_grpo  (found outputs/task3_grpo/fork_grpo/adapter_model.safetensors)
+[skip] task3_grpo.evaluate --config configs/grpo.yaml --adapter outputs/task3_grpo/fork_grpo --name fork_grpo  (found results/task3_grpo/heldout_fork_grpo.json)
+[skip] task3_grpo.continue_train --config configs/grpo.yaml --output outputs/task3_grpo/fork_dr_grpo --updates 8 --loss-type dr_grpo --run-name fork_dr_grpo  (found outputs/task3_grpo/fork_dr_grpo/adapter_model.safetensors)
+[skip] task3_grpo.evaluate --config configs/grpo.yaml --adapter outputs/task3_grpo/fork_dr_grpo --name fork_dr_grpo  (found results/task3_grpo/heldout_fork_dr_grpo.json)
+                                           0             1                     2
+loss_type                               grpo       dr_grpo  midpoint (no update)
+fork                               fork_grpo  fork_dr_grpo              midpoint
+heldout_reward                      1.855397      1.916239               1.89332
+heldout_kl_token                    0.000089      0.000078             -0.000002
+heldout_kl_seq                      0.027576      0.024189             -0.000579
+heldout_entropy                     0.983851      0.973063              0.969116
+heldout_len_mean                  308.733333    308.630303            305.448485
+heldout_len_std                   266.777704    261.336323            260.767147
+heldout_len_iqr                        447.0         452.0                 448.0
+heldout_truncation_rate             0.121212      0.084848              0.084848
+train_reward_mean                   1.437145      1.064573                   NaN
+train_len_mean                      240.5625        240.75                   NaN
+train_grad_norm_mean                0.512399       0.04432                   NaN
+train_generated_tokens                7698.0        7704.0                   NaN
+n_completions_in_loss                   23.0          21.0                   NaN
+median_length_split                     33.0          29.0                   NaN
+spearman_len_vs_gradnorm           -0.242304      0.457516                   NaN
+spearman_len_vs_grad_per_abs_adv   -0.853029      0.426144                   NaN
+gradnorm_short_mean                  0.39387       0.00951                   NaN
+gradnorm_long_mean                  0.126811      0.038778                   NaN
+gradnorm_long_over_short            0.321962      4.077854                   NaN
+grad_per_abs_adv_short            294.123114    209.825709                   NaN
+grad_per_abs_adv_long               0.129809      0.041854                   NaN
+token_weight_short_mean             0.012849      0.000267                   NaN
+token_weight_long_mean              0.001591      0.000416                   NaN
+sequence_weight_short_mean             0.142      0.003923                   NaN
+sequence_weight_long_mean           0.229789       0.08715                   NaN
+mean_length_pos_adv                    192.3    115.333333                   NaN
+mean_length_neg_adv               119.888889        118.25                   NaN
