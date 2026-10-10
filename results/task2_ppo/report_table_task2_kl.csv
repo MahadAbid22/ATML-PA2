@@ -1,0 +1,4 @@
+kl_beta,fork,heldout_reward,heldout_reward_effective,heldout_kl_token,heldout_kl_seq,heldout_entropy,heldout_len_mean,heldout_len_std,heldout_len_iqr,heldout_truncation_rate,stab_mean_post_update_kl,stab_max_post_update_kl,stab_max_abs_log_ratio,stab_policy_loss_std,stab_grad_norm_max,train_clip_fraction_mean,train_clip_fraction_last_epoch_mean,train_reward_mean,train_kl_token_last,train_generated_tokens
+0.0,fork_eps0.20_kl0.00,1.909,1.8302,0.0,0.0133,0.9818,308.5636,263.6638,455.0,0.0788,0.0003,0.0008,0.0372,0.0003,2.9466,0.0,0.0,0.6862,0.0006,2014.0
+0.1,fork_eps0.20_kl0.10,1.8464,1.7494,0.0,0.0007,0.9901,311.8606,265.2683,472.0,0.097,0.0,0.001,0.042,0.0003,2.939,0.0,0.0,0.8194,-0.0003,1971.0
+0.2,fork_eps0.20_kl0.20,1.8258,1.747,-0.0,-0.0,0.9717,312.0545,265.36,475.0,0.0788,-0.0001,0.0016,0.0394,0.0003,2.9464,0.0,0.0,1.2846,0.0001,1947.0

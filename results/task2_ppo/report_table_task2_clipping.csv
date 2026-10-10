@@ -1,0 +1,4 @@
+eps,cached_clip_fraction,cached_affected_token_fraction,replay_clip_fraction_final,replay_affected_fraction_final,heldout_reward,heldout_kl_token,heldout_len_mean,heldout_len_std,stab_mean_post_update_kl,stab_max_abs_log_ratio,stab_policy_loss_std,train_generated_tokens
+0.05,0.1061,0.0523,0.107,0.0526,1.9032,-0.0,304.5939,258.5505,0.0003,0.0305,0.0007,1971.0
+0.2,0.0083,0.0045,0.0085,0.0047,1.8464,0.0,311.8606,265.2683,0.0,0.042,0.0003,1971.0
+0.5,0.0056,0.0033,0.0056,0.0033,1.8582,0.0,311.9576,267.9098,-0.0002,0.0394,0.0005,1993.0

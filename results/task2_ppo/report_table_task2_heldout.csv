@@ -1,0 +1,4 @@
+policy,RM reward,reward (−1 if no EOS),KL token-mean,KL per-seq,entropy,len mean,len std,len IQR,truncation rate (768),n prompts
+sft,1.905,1.8262,0.0,0.0,0.9769,309.503,262.6667,482.0,0.0788,165
+midpoint,1.8946,1.8098,0.0,0.0088,0.982,308.8788,264.3519,455.0,0.0848,165
+standard,1.904,1.807,0.0,0.0062,0.9749,313.6606,269.1124,472.0,0.097,165

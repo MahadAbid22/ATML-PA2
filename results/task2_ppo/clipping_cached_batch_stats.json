@@ -1,0 +1,11 @@
+{
+  "n_rollouts": 32,
+  "n_valid_tokens": 8814,
+  "n_prompts_truncated_by_release_tokenizer": 3,
+  "mean_effective_reward": 1.1042327880859375,
+  "advantage_raw_mean": 0.1720854789018631,
+  "advantage_raw_std": 2.396113157272339,
+  "returns_mean": -1.8492398262023926,
+  "value_mean": -2.0213255882263184,
+  "kl_beta_used_for_shaping": 0.1
+}
